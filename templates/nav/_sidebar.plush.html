@@ -1,0 +1,31 @@
+<div class="sidebar bg-white-lm bg-very-dark-dm shadow-lg">
+    <div class="sidebar-menu ">
+        <h5 class="sidebar-title">General</h5>
+        <div class="sidebar-divider"></div>
+        <a href="<%= rootPath() %>"
+           class='sidebar-link sidebar-link-with-icon <%= activeClass("rootPath") %>'>
+          <span class="sidebar-icon">
+            <i class="fa fa-home" aria-hidden="true"></i>
+          </span>
+            Home
+        </a>
+        <a href="<%= incidentsPath() %>"
+           class='sidebar-link sidebar-link-with-icon <%= activeClass("incidentsPath") %>'>
+          <span class="sidebar-icon">
+            <i class="fa fa-exclamation" aria-hidden="true"></i>
+          </span>
+            Security Incidents
+        </a>
+        <br/>
+        <h5 class="sidebar-title">Admin</h5>
+        <div class="sidebar-divider"></div>
+        <a href='<%= usersAccountsPath() %>'
+           class='sidebar-link sidebar-link-with-icon <%= activeClass("accountsPath") %>'>
+      <span class="sidebar-icon">
+        <i class="fa fa-users" aria-hidden="true"></i>
+      </span>
+            Users
+        </a>
+        <br/>
+    </div>
+</div>

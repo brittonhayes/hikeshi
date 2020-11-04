@@ -1,0 +1,45 @@
+<div class="py-4 mb-2">
+    <h3 class="d-inline-block">
+        <code>Users</code>
+    </h3>
+    <div class="float-right">
+        <%= linkTo(newUsersPath(), {class: "btn btn-primary"}) { %>
+        Create New User
+        <% } %>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= for (user) in users { %>
+    <tr>
+        <td><%= user.FirstName %></td>
+        <td><%= user.LastName %></td>
+        <td><%= user.Email %></td>
+        <td>
+            <div class="dropdown">
+                <button class="btn" data-toggle="dropdown" type="button" id="dropdown-toggle-btn-1" aria-haspopup="true"
+                        aria-expanded="false">
+                    Actions<i class="fa fa-angle-down ml-5" aria-hidden="true"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdown-toggle-btn-1">
+                    <%= linkTo(usersAccountPath({ user_id: user.ID }), {class: "dropdown-item", body: "View"}) %>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <% } %>
+    </tbody>
+</table>
+
+<div class="text-center">
+    <%= paginator(pagination) %>
+</div>

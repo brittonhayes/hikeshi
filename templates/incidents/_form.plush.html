@@ -1,0 +1,40 @@
+<div class="form-group">
+    <%= f.InputTag("Title", { class: "form-control-lg", placeholder: "e.g. API token leak" }) %>
+</div>
+<div>
+    <%= f.InputTag("Date", { type: "Datetime-local" }) %>
+</div>
+<div class="form-row row-eq-spacing">
+    <div class="col-sm">
+    <%= f.InputTag("SlackChannel", { placeholder: "e.g. #sec-ir-2020-08-01" }) %>
+    </div>
+    <div class="col-sm">
+        <%= f.SelectTag("Severity", { options: ["Low", "Moderate", "High", "Critical"]}) %>
+    </div>
+</div>
+<div class="form-row row-eq-spacing">
+    <div class="col-sm">
+    <%= f.InputTag("Scope", { placeholder: "How large was the impact this incident?" }) %>
+    </div>
+    <div class="col-sm">
+        <%= f.InputTag("ResponsibleParty", { placeholder: "Who was responsible for this incident?" }) %>
+    </div>
+</div>
+
+<div>
+    <%= f.InputTag("AffectedCustomers", { placeholder: "What customers were impacted?" }) %>
+</div>
+<div>
+    <%= f.InputTag("RootCause", { placeholder: "What caused this incident to occur?" }) %>
+</div>
+<div>
+    <%= f.TextArea("Mitigation", { placeholder: "How was this incident mitigated?" }) %>
+</div>
+<div>
+    <%= f.TextArea("Summary", { rows: 400, placeholder: "Give a brief summary of the events involved." }) %>
+</div>
+<div>
+    <%= csrf() %>
+</div>
+<br/>
+<button class="btn bg-white-dm text-dark-dm bg-dark-light-lm text-white-lm" role="submit">Save</button>

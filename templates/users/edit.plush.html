@@ -1,0 +1,14 @@
+<div class="container p-40">
+    <div class="content">
+        <h2 class="title">Edit User</h2>
+        <%= form_for(user, {action: usersPath(), method: "PUT"}) { %>
+        <%= f.InputTag("Email", { placeholder: "Your email address"}) %>
+        <%= f.InputTag("FirstName", { placeholder: "Your first name", label: "First Name" } ) %>
+        <%= f.InputTag("LastName", { placeholder: "Your last name", label: "Last Name" }) %>
+        <%= f.InputTag("Password", { placeholder: "Password", type: "password"}) %>
+        <%= f.InputTag("PasswordConfirmation", { placeholder: "Confirm Password", type: "password"}) %>
+        <button class="btn btn-success" role="submit">Save</button>
+        <%= linkTo(rootPath(), {class: "btn btn-info", body: "Cancel"})%>
+        <% } %>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="py-4 mb-2">
+  <h3 class="d-inline-block text-secondary-dm">
+    <code>New Incident</code>
+  </h3>
+</div>
+
+<%= form_for(incident, {action: incidentsPath(), method: "POST"}) { %>
+  <%= partial("incidents/form.html") %>
+  <%= csrf() %>
+  <%= linkTo(incidentsPath(), {class: "btn btn-warning", "data-confirm": "Are you sure?", body: "Cancel"}) %>
+<% } %>

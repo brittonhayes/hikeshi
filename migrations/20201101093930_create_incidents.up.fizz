@@ -1,0 +1,16 @@
+create_table("incidents") {
+	t.Column("id", "uuid", {primary: true})
+	t.Column("date", "date", {})
+	t.Column("date_closed", "date", {})
+	t.Column("severity", "string", {})
+	t.Column("title", "string", {})
+	t.Column("summary", "text", {})
+	t.Column("scope", "string", {})
+	t.Column("responsible_party", "string", {})
+	t.Column("result", "string", {})
+	t.Column("mitigation", "string", {})
+	t.Column("affected_customers", "string", {})
+	t.Column("root_cause", "string", {})
+	t.Column("slack_channel", "string", {})
+	t.Timestamps()
+}

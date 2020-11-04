@@ -1,0 +1,24 @@
+@use "sass:map";
+
+$theme-colors: (
+        "dark": #012B30,
+        "light": #F8F9F9,
+        "primary": #1F73B7,
+        "info": #30AABC,
+        "warning": #ED8F1C,
+        "danger": #CC3340,
+        "zd_kale": #17494D,
+        "zd_teal": #02A191,
+        "zd_mint": #299C66,
+        "zd_royal": #7986D8,
+);
+
+.ease {
+  transition: all 250ms ease-in-out;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+

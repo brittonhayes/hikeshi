@@ -1,0 +1,15 @@
+<div class="py-4 mb-2">
+    <h3 class="d-inline-block text-secondary-dm">
+        <code>New User</code>
+    </h3>
+</div>
+<%= form_for(user, {action: usersPath()}) { %>
+<%= f.InputTag("Email", { placeholder: "Your email address"}) %>
+<%= f.InputTag("FirstName", { placeholder: "Your first name", label: "First Name" } ) %>
+<%= f.InputTag("LastName", { placeholder: "Your last name", label: "Last Name" }) %>
+<%= f.InputTag("Password", { placeholder: "Password", type: "password"}) %>
+<%= f.InputTag("PasswordConfirmation", { placeholder: "Confirm Password", type: "password"}) %>
+<button class="btn bg-white-dm text-dark-dm bg-dark-light-lm text-white-lm" role="submit">Save</button>
+<%= linkTo(rootPath(), {class: "btn btn-info", body: "Cancel"})%>
+<% } %>
+

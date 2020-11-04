@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row justify-content-center mw-full">
+        <div class="col align-items-center h-100">
+            <div class="card shadow-lg  text-center">
+                <h1 class="title text-center p-5"><strong>Hikeshi</strong>&nbsp;Incident Response</h1>
+
+                <%= if (current_user) { %>
+                <img src='/assets/images/home.svg' class="img-fluid rounded-top" style="height:200px;width:200px;"
+                     alt="...">
+                <h2 class="content-title">Welcome back, <%= current_user.FirstName %>!</h2>
+                <br>
+                <br>
+                <hr>
+                <p class="text-body">
+                    <%= linkTo(rootPath(), {class: "btn btn-primary", body: "Go Home"})%>
+                    <%= linkTo(authPath(), {class: "btn btn-link text-danger", body: "Sign Out", data-method: "DELETE"})%>
+                </p>
+                <% } else { %>
+                <img src='/assets/images/safe.svg' class="img-fluid rounded-top" style="height:200px;width:200px;"
+                     alt="...">
+                <h2 class="content-title">Welcome</h2>
+                <br>
+                <br>
+                <hr>
+                <p>
+                    <%= linkTo(newAuthPath(), {class: "btn btn-primary", body: "Sign In"})%>
+                </p>
+                <% } %>
+
+            </div>
+        </div>
+    </div>
+</div>
+

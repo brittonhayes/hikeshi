@@ -1,0 +1,6 @@
+- id: "incident.created.success"
+  translation: "Incident was successfully created."
+- id: "incident.updated.success"
+  translation: "Incident was successfully updated."
+- id: "incident.destroyed.success"
+  translation: "Incident was successfully destroyed."

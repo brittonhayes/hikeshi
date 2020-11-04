@@ -1,0 +1,55 @@
+<div class="py-4 mb-2">
+    <h3 class="d-inline-block">
+        <code>Incident Details</code>
+    </h3>
+    <div class="float-right">
+        <%= linkTo(incidentsPath(), {class: "btn btn-info"}) { %>
+        Back to all Incidents
+        <% } %>
+        <%= linkTo(editIncidentPath({ incident_id: incident.ID }), {class: "btn btn-warning", body: "Edit"}) %>
+        <%= linkTo(incidentPath({ incident_id: incident.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Delete"}) %>
+    </div>
+</div>
+
+
+<div class="w-full mw-full ">
+    <div class="card p-10 shadow-lg">
+        <div class="content">
+            <h2 class="content-title text-white-dm">
+                <strong>
+                    <%= toTitle() { %>
+                    <%= incident.Title %>
+                    <% } %>
+                </strong>
+            </h2>
+            <code class="text-muted">
+                <b>Date:</b>
+                <%= prettyDate() { %>
+                <%= incident.Date %>
+                <% } %>
+            </code>
+            <br/>
+            <code class="text-muted">
+                <b>Last Updated:</b>
+                <%= prettyDate() { %>
+                <%= incident.UpdatedAt %>
+                <% } %>
+            </code>
+            <br/>
+            <code class="text-muted">
+                <b>Severity:</b> <%= incident.Severity %>
+            </code>
+            <br/>
+            <code class="text-muted">
+                <b>Scope:</b> <%= incident.Scope %>
+            </code>
+            <br/>
+            <hr>
+            <div class="container bg-dark-light p-10">
+                <code class="p-5 text-light-lm">
+                    <%= incident.Summary %>
+                </code>
+            </div>
+        </div>
+    </div>
+</div>
