@@ -1,11 +1,17 @@
-<div style="text-align:center">
-    <img src="/assets/images/wordmark.svg" alt="Hikeshi Wordmark"/>
-</div>
+# Hikeshi
 
-## Hikeshi
+> Hikeshi is a security incident response application that keeps documenting incidents simple, so you can focus on fighting fires. 
 
-Hikeshi is a security incident response application that keeps documenting incidents simple, so you can focus on fighting fires. 
+## Table of Contents
 
+- [About Hikeshi](#About-Hikeshi)
+- [Pre-Requisites](#Requirements)
+- [Database Setup](#Database-Setup)
+    * [Database Migrations](#Create-and-Populate-Your-Databases)
+- [Starting the application](#Starting-the-Application)
+- [Editing the source](#Editing-the-source)
+
+---
 
 ![Hikeshi Gif](/assets/images/hikeshi.gif)
 
@@ -21,7 +27,7 @@ The name comes from the firefighting system established in Japan during the Edo 
 It isn't feature packed, but it does exactly what it needs to while you handle the incidents at hand.
 
 
-## Pre-Requisites
+## Requirements
 
 1. `brew install buffalo`
 2. `brew install postgres`
