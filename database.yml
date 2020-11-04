@@ -4,11 +4,11 @@ development:
   database: hikeshi_development
   user: hikeshi
   password: postgres
-  host: 127.0.0.1
+  host: db
   pool: 5
 
 test:
-  url: {{envOr "TEST_DATABASE_URL" "postgres://hikeshi:postgres@127.0.0.1:5432/hikeshi_test?sslmode=disable"}}
+  url: {{envOr "TEST_DATABASE_URL" "postgres://hikeshi:postgres@db:5432/hikeshi_test?sslmode=disable"}}
 
 production:
-  url: {{envOr "DATABASE_URL" "postgres://hikeshi:postgres@127.0.0.1:5432/hikeshi_production?sslmode=disable"}}
+  url: {{envOr "DATABASE_URL" "postgres://hikeshi:postgres@db:5432/hikeshi_production?sslmode=disable"}}

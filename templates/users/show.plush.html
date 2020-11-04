@@ -26,8 +26,8 @@
             <hr>
             <br>
             <div>
-                <%= linkTo(editUsersAccountPath({ user_id: user.ID }), {class: "btn btn-warning", body: "Edit"}) %>
-                <%= linkTo(usersAccountPath({ user_id: user.ID }), {class: "btn btn-danger", "data-method": "DELETE","data-confirm": "Are you sure?", body: "Delete"}) %>
+                <%= linkTo(editUsersAccountUserIDPath({ user_id: user.ID }), {class: "btn btn-warning", body: "Edit"}) %>
+                <%= linkTo(usersAccountUserIDPath({ user_id: user.ID }), {class: "btn btn-danger", "data-method": "DELETE","data-confirm": "Are you sure?", body: "Delete"}) %>
             </div>
         </div>
     </div>

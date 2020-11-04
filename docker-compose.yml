@@ -4,11 +4,21 @@ services:
   db:
     image: postgres:alpine
     environment:
-      POSTGRES_DB: hikeshi_development
-      POSTGRES_USER: hikeshi
-      POSTGRES_PASSWORD: postgres
+      - POSTGRES_DB=hikeshi_development
+      - POSTGRES_USER=hikeshi
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 1234:5432
 
   app:
     build: .
     ports:
       - 3000:3000
+    environment:
+      - WAIT_HOSTS=db:5432
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+    command: sh -c "/wait && /bin/app migrate && /bin/app task db:seed:users && /bin/app"
+    depends_on:
+      - db
