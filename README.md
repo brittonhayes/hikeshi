@@ -3,6 +3,9 @@
 Hikeshi is a security incident response application that keeps documenting incidents simple, so you can focus on fighting fires. 
 
 
+![Hikeshi Gif](/assets/images/hikeshi.gif)
+
+
 ## About Hikeshi
 
 The name comes from the firefighting system established in Japan during the Edo period. Incident response involves a lot of "firefighting" in the sense that you're only called upon when something has gone very wrong. In high stress situations, it's nice to have a simple tool that assists you while you fight those fires.
