@@ -1,4 +1,4 @@
-# Hikeshi
+![Hikeshi Wordmark](/assets/images/wordmark.svg)
 
 Hikeshi is a security incident response application that keeps documenting incidents simple, so you can focus on fighting fires. 
 
