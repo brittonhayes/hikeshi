@@ -1,33 +1,41 @@
 <div class="py-4 mb-2">
     <h3 class="d-inline-block">User Details</h3>
-
     <div class="float-right">
         <%= linkTo(usersAccountsPath(), {class: "btn btn-info"}) { %>
         Back to all Users
         <% } %>
-
     </div>
 </div>
 
-<div class="w-600 mw-full  p-10 "> <!-- w-400 = width: 40rem (400px), mw-full = max-width: 100% -->
-    <div class="card shadow-lg text-center"> <!-- p-0 = padding: 0 -->
-        <div class="text-center">
-            <img src="https://avatars.dicebear.com/api/identicon/<%= user.FirstName %>.svg?options[h]=128&options[w]=128"
-                 class="img-fluid" alt="responsive image">
-        </div>
-        <div class="content">
-            <h2 class="content-title">
-                <strong><%= user.FirstName %>&nbsp;<%= user.LastName %></strong>
-            </h2>
-            <p class="text-muted">
-                <%= user.Email %>
-            </p>
-            <br>
-            <hr>
-            <br>
-            <div>
-                <%= linkTo(editUsersAccountUserIDPath({ user_id: user.ID }), {class: "btn btn-warning", body: "Edit"}) %>
-                <%= linkTo(usersAccountUserIDPath({ user_id: user.ID }), {class: "btn btn-danger", "data-method": "DELETE","data-confirm": "Are you sure?", body: "Delete"}) %>
+<div class="row w-500">
+    <div class="col">
+        <div class="card p-20">
+            <div class="content">
+                <div class="rounded">
+                    <img src="https://avatars.dicebear.com/api/identicon/<%= user.FirstName %>.svg?options[h]=128&options[w]=128"
+                         class="img-fluid rounded-top" alt="...">
+                    <br>
+                </div>
+                <div>
+                    <p class="text-monospace">
+                        <span class="text-muted">Name:&nbsp;</span><%= user.FirstName %>&nbsp;<%= user.LastName %>
+                    </p>
+                    <p class="text-monospace">
+                        <span class="text-muted">Email:&nbsp;</span><%= user.Email %>
+                    </p>
+                    <p class="text-monospace">
+                        <span class="text-muted">Role:&nbsp;</span><%= user.Role %>
+                    </p>
+                </div>
+                <hr>
+                <br>
+                <div>
+                    <%= linkTo(editUsersAccountUserIDPath({ user_id: user.ID }), {class: "btn btn-warning", body:
+                    "Edit"})
+                    %>
+                    <%= linkTo(usersAccountUserIDPath({ user_id: user.ID }), {class: "btn btn-danger", "data-method":
+                    "DELETE","data-confirm": "Are you sure?", body: "Delete"}) %>
+                </div>
             </div>
         </div>
     </div>

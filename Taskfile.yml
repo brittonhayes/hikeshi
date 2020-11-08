@@ -1,0 +1,29 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - task: run
+
+  run:
+    desc: Build and run hikeshi
+    cmds:
+      - task: build
+      - ./bin/hikeshi dev
+
+  dev:
+    desc: Run hikeshi in developer mode
+    sources:
+      - actions/*.go
+      - assets/**/*.js
+      - assets/**/*.scss
+    cmds:
+      - buffalo dev
+
+  build:
+    desc: Build hikeshi
+    cmds:
+      - buffalo build
+
+  includes:
+    install: ./Taskfile_{{OS}}.yml

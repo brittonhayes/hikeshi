@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.4
--- Dumped by pg_dump version 12.4
+-- Dumped from database version 13.0
+-- Dumped by pg_dump version 13.0 (Ubuntu 13.0-1.pgdg20.04+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -65,6 +65,7 @@ CREATE TABLE public.users (
     first_name character varying(255) NOT NULL,
     last_name character varying(255) NOT NULL,
     email character varying(255) NOT NULL,
+    role character varying(255) NOT NULL,
     password_hash character varying(255) NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL

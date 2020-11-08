@@ -4,7 +4,8 @@ development:
   database: hikeshi_development
   user: hikeshi
   password: postgres
-  host: db
+  port: 1234
+  host: 127.0.0.1
   pool: 5
 
 test:
