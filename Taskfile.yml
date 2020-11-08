@@ -25,5 +25,11 @@ tasks:
     cmds:
       - buffalo build
 
+  release:
+    desc: Update release tags and push out new release
+    cmds:
+      - git tag $(svu next) -m "Latest release" $(git rev-parse --short HEAD)
+      - goreleaser
+
   includes:
     install: ./Taskfile_{{OS}}.yml

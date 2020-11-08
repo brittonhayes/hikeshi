@@ -9,22 +9,20 @@ builds:
     goos:
       - linux
       - darwin
-archives:
-  - replacements:
-      darwin: Darwin
-      linux: Linux
-      386: i386
-      amd64: x86_64
 checksum:
   name_template: 'checksums.txt'
 snapshot:
   name_template: "{{ .Tag }}-next"
 changelog:
   sort: asc
-  filters:
-    exclude:
-      - '^docs:'
-      - '^test:'
+
+release:
+  github:
+    owner: brittonhayes
+    name: hikeshi
+
+  name_template: "{{.ProjectName}}-v{{.Version}}"
+
 
 brews:
   - # Default to project name
@@ -43,11 +41,8 @@ brews:
     tap:
       owner: brittonhayes
       name: hikeshi-tap
-      # Optionally a token can be provided, if it differs from the token provided to GoReleaser
-      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
 
     # Template for the url which is determined by the given Token (github or gitlab)
-    # Default for github is "https://github.com/<repo_owner>/<repo_name>/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
     url_template: "https://github.com/brittonhayes/hikeshi/releases/{{ .Tag }}/{{ .ArtifactName }}"
 
     # Git author used to commit to the repository.
@@ -85,8 +80,3 @@ brews:
       - name: git
       - name: zsh
         type: optional
-
-    # Custom install script for brew.
-    # Default is 'bin.install "program"'.
-    install: |
-      bin.install "hikeshi"
