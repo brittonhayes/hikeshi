@@ -55,6 +55,7 @@ var _ = Namespace("db", func() {
 				FirstName:    "John",
 				LastName:     "Doe",
 				Email:        "jdoe@example.com",
+				Role:         "admin",
 				Password:     "Password",
 				PasswordHash: string(passwd),
 				CreatedAt:    time.Time{},

@@ -19,7 +19,7 @@ import (
 // Model: Singular (User)
 // DB Table: Plural (users)
 // Resource: Plural (Users)
-// Path: Plural (/user-list)
+// Path: Plural (/users/accounts)
 // View Template Folder: Plural (/templates/users/)
 
 // UserResource is the resource for the User model
@@ -35,7 +35,7 @@ func UsersNew(c buffalo.Context) error {
 }
 
 // List gets all Users. This function is mapped to the path
-// GET /users
+// GET /users/accounts
 func (v UserResource) List(c buffalo.Context) error {
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)
@@ -67,7 +67,7 @@ func (v UserResource) List(c buffalo.Context) error {
 }
 
 // Show gets the data for one User. This function is mapped to
-// the path GET /users/{user_id}
+// the path GET /users/accounts/{user_id}
 func (v UserResource) Show(c buffalo.Context) error {
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)
@@ -95,7 +95,7 @@ func (v UserResource) Show(c buffalo.Context) error {
 }
 
 // Edit renders a edit form for a User. This function is
-// mapped to the path GET /users/{user_id}/edit
+// mapped to the path GET /users/accounts/{user_id}/edit
 func (v UserResource) Edit(c buffalo.Context) error {
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)
@@ -140,7 +140,7 @@ func UsersCreate(c buffalo.Context) error {
 }
 
 // Update changes a User in the DB. This function is mapped to
-// the path PUT /accounts/{user_id}
+// the path PUT /users/accounts/{user_id}
 func (v UserResource) Update(c buffalo.Context) error {
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)
@@ -228,4 +228,38 @@ func Authorize(next buffalo.Handler) buffalo.Handler {
 		}
 		return next(c)
 	}
+}
+
+// Destroy deletes a User from the DB. This function is mapped
+// to the path DELETE /users/accounts/{user_id}
+func (v UserResource) Destroy(c buffalo.Context) error {
+	// Get the DB connection from the context
+	tx, ok := c.Value("tx").(*pop.Connection)
+	if !ok {
+		return fmt.Errorf("no transaction found")
+	}
+
+	// Allocate an empty Incident
+	user := &models.User{}
+
+	// To find the User the parameter user_id is used.
+	if err := tx.Find(user, c.Param("user_id")); err != nil {
+		return c.Error(http.StatusNotFound, err)
+	}
+
+	if err := tx.Destroy(user); err != nil {
+		return err
+	}
+
+	return responder.Wants("html", func(c buffalo.Context) error {
+		// If there are no errors set a flash message
+		c.Flash().Add("success", T.Translate(c, "user.destroyed.success"))
+
+		// Redirect to the index page
+		return c.Redirect(http.StatusSeeOther, "/users/accounts")
+	}).Wants("json", func(c buffalo.Context) error {
+		return c.Render(http.StatusOK, r.JSON(user))
+	}).Wants("xml", func(c buffalo.Context) error {
+		return c.Render(http.StatusOK, r.XML(user))
+	}).Respond(c)
 }

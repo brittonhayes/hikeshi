@@ -21,6 +21,7 @@ type User struct {
 	FirstName    string    `json:"first_name" db:"first_name"`
 	LastName     string    `json:"last_name" db:"last_name"`
 	Email        string    `json:"email" db:"email"`
+	Role         string    `json:"role" db:"role"`
 	PasswordHash string    `json:"password_hash" db:"password_hash"`
 
 	Password             string `json:"-" db:"-"`
@@ -62,6 +63,7 @@ func (u *User) Validate(tx *pop.Connection) (*validate.Errors, error) {
 		&validators.StringIsPresent{Field: u.Email, Name: "Email"},
 		&validators.StringIsPresent{Field: u.FirstName, Name: "First Name"},
 		&validators.StringIsPresent{Field: u.LastName, Name: "Last Name"},
+		&validators.StringIsPresent{Field: u.Role, Name: "Role"},
 		&validators.StringIsPresent{Field: u.PasswordHash, Name: "PasswordHash"},
 		// check to see if the email address is already taken:
 		&validators.FuncValidator{
