@@ -27,5 +27,4 @@ It isn't feature packed, but it does exactly what it needs to while you take car
 
 ---
 
-
 [Powered by Buffalo](http://gobuffalo.io)
