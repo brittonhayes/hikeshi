@@ -29,7 +29,7 @@ tasks:
     desc: Update release tags and push out new release
     cmds:
       - git tag $(svu patch) -m "Latest release" $(git rev-parse --short HEAD)
-      - goreleaser
+      - goreleaser --rm-dist
 
   includes:
     install: ./Taskfile_{{OS}}.yml
