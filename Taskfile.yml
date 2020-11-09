@@ -28,7 +28,7 @@ tasks:
   release:
     desc: Update release tags and push out new release
     cmds:
-      - git tag $(svu next) -m "Latest release" $(git rev-parse --short HEAD)
+      - git tag $(svu patch) -m "Latest release" $(git rev-parse --short HEAD)
       - goreleaser
 
   includes:
