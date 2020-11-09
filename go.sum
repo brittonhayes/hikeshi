@@ -132,6 +132,7 @@ github.com/gobuffalo/buffalo v0.14.11/go.mod h1:RO5OwOJQjv6/TukzszV5ELA54lg84D1k
 github.com/gobuffalo/buffalo v0.15.4/go.mod h1:KAEep39iQPGw18Wa71KKkDCCKdMlEwZ+21tab42MFLY=
 github.com/gobuffalo/buffalo v0.15.5 h1:JkBrP4aqWo3gELWdtNVqD62PHZt4uFXHVdZIU+kODz8=
 github.com/gobuffalo/buffalo v0.15.5/go.mod h1:MeAI3aC7vGegr6Ruh+nfj0TvIoBhlLeO7VLueBjwj2o=
+github.com/gobuffalo/buffalo v0.16.8/go.mod h1:rq22z/EtG6i/Y/bu74G04LSGyL/6F2yTMLwNR/RlYDs=
 github.com/gobuffalo/buffalo v0.16.16 h1:h1is/SWwngKJVtzl3fHWjMrFCgjQ0xAXn47Z7X9u8NM=
 github.com/gobuffalo/buffalo v0.16.16/go.mod h1:RNzCxBehFHSw/+xRKsc+5k8E/QVjbiFM22B8YyfdSTc=
 github.com/gobuffalo/buffalo-docker v1.0.5/go.mod h1:NZ3+21WIdqOUlOlM2onCt7cwojYp4Qwlsngoolw8zlE=
@@ -424,13 +425,19 @@ github.com/gobuffalo/mw-csrf v1.0.0 h1:732iVOy7MgjoKoHn3twll1Q3gtRgxfAwPBOX9VDSI
 github.com/gobuffalo/mw-csrf v1.0.0/go.mod h1:xl6AxaKONU6ZSOUtzzmpaQw0jpY6ofTBHDnEqrppyB4=
 github.com/gobuffalo/mw-forcessl v0.0.0-20180802152810-73921ae7a130 h1:v94+IGhlBro0Lz1gOR3lrdAVSZ0mJF2NxsdppKd7FnI=
 github.com/gobuffalo/mw-forcessl v0.0.0-20180802152810-73921ae7a130/go.mod h1:JvNHRj7bYNAMUr/5XMkZaDcw3jZhUZpsmzhd//FFWmQ=
+github.com/gobuffalo/mw-forcessl v0.0.0-20200131175327-94b2bd771862 h1:DBOFjRlPu/r+XtxP0/vFLb0FYumvjHA+q+YdO3PwNmw=
+github.com/gobuffalo/mw-forcessl v0.0.0-20200131175327-94b2bd771862/go.mod h1:tApQu7ScNNOp0xGMOijK49vG5//IYVRWnlms2so3wg0=
 github.com/gobuffalo/mw-i18n v0.0.0-20180802152014-e3060b7e13d6/go.mod h1:91AQfukc52A6hdfIfkxzyr+kpVYDodgAeT5cjX1UIj4=
 github.com/gobuffalo/mw-i18n v0.0.0-20181027200759-09e0c99be4d3/go.mod h1:1PpGPgqP8VsfUppgBA9FrTOXjI6X9gjqhh/8dmg48lg=
 github.com/gobuffalo/mw-i18n v0.0.0-20190129204410-552713a3ebb4 h1:c1fFPCxA7SozZPqMhpfZoOVa3wUpCl11gyCEZ4nYqUE=
 github.com/gobuffalo/mw-i18n v0.0.0-20190129204410-552713a3ebb4/go.mod h1:rBg2eHxsyxVjtYra6fGy4GSF5C8NysOvz+Znnzk42EM=
+github.com/gobuffalo/mw-i18n v1.1.0 h1:hqEiOaYhDZWjTP5bI7MkClfptQjF8475TRwkl8dqOQE=
+github.com/gobuffalo/mw-i18n v1.1.0/go.mod h1:td5/G3I0EI7D7UgRXUDVS0lS3O9rRj6juqbP0utc420=
 github.com/gobuffalo/mw-paramlogger v0.0.0-20181005191442-d6ee392ec72e/go.mod h1:6OJr6VwSzgJMqWMj7TYmRUqzNe2LXu/W1rRW4MAz/ME=
 github.com/gobuffalo/mw-paramlogger v0.0.0-20190129202837-395da1998525 h1:2QoD5giw2UrYJu65UKDEo9HFcz9yun387twL2zzn+/Q=
 github.com/gobuffalo/mw-paramlogger v0.0.0-20190129202837-395da1998525/go.mod h1:gEo/ABCsKqvpp/KCxN2AIzDEe0OJUXbJ9293FYrXw+w=
+github.com/gobuffalo/mw-paramlogger v1.0.0 h1:6dQKwAKNX++syXe5s1G7BDq5Hw6QxW5+QYgY7k4wbcU=
+github.com/gobuffalo/mw-paramlogger v1.0.0/go.mod h1:3OIdMvIb7FyIG08b1tXQK64F2SWAOwSIBAtHuGMBjtw=
 github.com/gobuffalo/mw-tokenauth v0.0.0-20181001105134-8545f626c189/go.mod h1:UqBF00IfKvd39ni5+yI5MLMjAf4gX7cDKN/26zDOD6c=
 github.com/gobuffalo/mw-tokenauth v0.0.0-20190129201951-95847f29c5c8/go.mod h1:n2oa93LHGD94hGI+PoJO+6cf60DNrXrAIv9L/Ke3GXc=
 github.com/gobuffalo/nulls v0.0.0-20190305142546-85f3c9250d87/go.mod h1:KhaLCW+kFA/G97tZkmVkIxhRw3gvZszJn7JjPLI3gtI=
@@ -618,6 +625,8 @@ github.com/gobuffalo/x v0.0.0-20181109195216-5b3131238124/go.mod h1:GpdLUY6/Ztf/
 github.com/gobuffalo/x v0.0.0-20181110221217-14085ca3e1a9/go.mod h1:ig5vdn4+5IPtxgESlZWo1SSDyHKKef8EjVVKhY9kkIQ=
 github.com/gobuffalo/x v0.0.0-20190224155809-6bb134105960 h1:DoUD23uwnzKJ3t5HH2SeTIszWmc13AV9TAdMhtXQts8=
 github.com/gobuffalo/x v0.0.0-20190224155809-6bb134105960/go.mod h1:ig5vdn4+5IPtxgESlZWo1SSDyHKKef8EjVVKhY9kkIQ=
+github.com/gobuffalo/x v0.1.0 h1:ILV6PIfyQto7RKfxRutQUuW234x+A5/+FRQpik0hNrM=
+github.com/gobuffalo/x v0.1.0/go.mod h1:WevpGD+5YOreDJznWevcn8NTmQEW5STSBgIkpkjzqXc=
 github.com/gofrs/uuid v3.1.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRxnplIgP/c0N/04lM=
 github.com/gofrs/uuid v3.2.0+incompatible h1:y12jRkkFxsd7GpqdSZ+/KCs/fJbqpEXSGd4+jfEaewE=
 github.com/gofrs/uuid v3.2.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRxnplIgP/c0N/04lM=
@@ -930,6 +939,7 @@ github.com/monoculum/formam v0.0.0-20190730134247-0612307a4099/go.mod h1:JKa2av1
 github.com/monoculum/formam v0.0.0-20190830100315-7ff9597b1407/go.mod h1:JKa2av1XVkGjhxdLS59nDoXa2JpmIHpnURWNbzCtXtc=
 github.com/monoculum/formam v0.0.0-20191229172733-952f0766a724 h1:qlTmDrFZLQIGXnd1JE58dqyLnKyIJjR9WBeDQcT3O8w=
 github.com/monoculum/formam v0.0.0-20191229172733-952f0766a724/go.mod h1:JKa2av1XVkGjhxdLS59nDoXa2JpmIHpnURWNbzCtXtc=
+github.com/monoculum/formam v0.0.0-20200316225015-49f0baed3a1b/go.mod h1:JKa2av1XVkGjhxdLS59nDoXa2JpmIHpnURWNbzCtXtc=
 github.com/monoculum/formam v0.0.0-20200905010316-d7a8fbd33677/go.mod h1:JKa2av1XVkGjhxdLS59nDoXa2JpmIHpnURWNbzCtXtc=
 github.com/monoculum/formam v0.0.0-20200923020755-6f187e4ffe27 h1:TTeX0RC/Ea5uMt1t3j0/bk+bXLWcXIR1Fdue4dFZe/k=
 github.com/monoculum/formam v0.0.0-20200923020755-6f187e4ffe27/go.mod h1:JKa2av1XVkGjhxdLS59nDoXa2JpmIHpnURWNbzCtXtc=
@@ -958,6 +968,7 @@ github.com/openzipkin/zipkin-go v0.1.1/go.mod h1:NtoC/o8u3JlF1lSlyPNswIbeQH9bJTm
 github.com/pascaldekloe/goe v0.0.0-20180627143212-57f6aae5913c/go.mod h1:lzWF7FIEvWOWxwDKqyGYQf6ZUaNfKdP144TG7ZOy1lc=
 github.com/pelletier/go-toml v1.2.0 h1:T5zMGML61Wp+FlcbWjRDT7yAxhJNAiPPLOFECq181zc=
 github.com/pelletier/go-toml v1.2.0/go.mod h1:5z9KED0ma1S8pY6P1sdut58dfprrGBbd/94hg7ilaic=
+github.com/pelletier/go-toml v1.6.0/go.mod h1:5N711Q9dKgbdkxHL+MEfF31hpT7l0S0s/t2kKREewys=
 github.com/pelletier/go-toml v1.8.1 h1:1Nf83orprkJyknT6h7zbuEGUEjcyVlCxSUGTENmNCRM=
 github.com/pelletier/go-toml v1.8.1/go.mod h1:T2/BmBdy8dvIRq1a/8aqjN41wvWlN4lrapLU/GW4pbc=
 github.com/pkg/errors v0.8.0/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
@@ -1099,6 +1110,11 @@ github.com/unrolled/secure v0.0.0-20181005190816-ff9db2ff917f/go.mod h1:mnPT77IA
 github.com/unrolled/secure v0.0.0-20181022170031-4b6b7cf51606/go.mod h1:mnPT77IAdsi/kV7+Es7y+pXALeV3h7G6dQF6mNYjcLA=
 github.com/unrolled/secure v0.0.0-20190103195806-76e6d4e9b90c h1:ZY4dowVsuIAQtXXwKJ9ezfonDQ2YT7pcXRpPF2iAy3Y=
 github.com/unrolled/secure v0.0.0-20190103195806-76e6d4e9b90c/go.mod h1:mnPT77IAdsi/kV7+Es7y+pXALeV3h7G6dQF6mNYjcLA=
+github.com/unrolled/secure v1.0.7/go.mod h1:uGc1OcRF8gCVBA+ANksKmvM85Hka6SZtQIbrKc3sHS4=
+github.com/unrolled/secure v1.0.8 h1:JaMvKbe4CRt8oyxVXn+xY+6jlqd7pyJNSVkmsBxxQsM=
+github.com/unrolled/secure v1.0.8/go.mod h1:fO+mEan+FLB0CdEnHf6Q4ZZVNqG+5fuLFnP8p0BXDPI=
+github.com/urfave/negroni v1.0.0 h1:kIimOitoypq34K7TG7DUaJ9kq/N4Ofuwi1sjz0KipXc=
+github.com/urfave/negroni v1.0.0/go.mod h1:Meg73S6kFm/4PpbYdq35yYWoCZ9mS/YSx+lKnmiohz4=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
 github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77/go.mod h1:aYKd//L2LvnjZzWKhF00oedf4jCCReLcmhLdhm1A27Q=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
@@ -1289,8 +1305,8 @@ golang.org/x/sys v0.0.0-20200202164722-d101bd2416d5 h1:LfCXLvNmTYH9kEmVgqbnsWfru
 golang.org/x/sys v0.0.0-20200202164722-d101bd2416d5/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20200223170610-d5e6a3e2c0ae/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20200930185726-fdedc70b468f/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
-golang.org/x/sys v0.0.0-20201101102859-da207088b7d1 h1:a/mKvvZr9Jcc8oKfcmgzyp7OwF73JPWsQLvH1z2Kxck=
-golang.org/x/sys v0.0.0-20201101102859-da207088b7d1/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20201107080550-4d91cf3a1aaf h1:kt3wY1Lu5MJAnKTfoMR52Cu4gwvna4VTzNOiT8tY73s=
+golang.org/x/sys v0.0.0-20201107080550-4d91cf3a1aaf/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.1-0.20180807135948-17ff2d5776d2/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.2 h1:tW2bmiBqwgJj/UpqtC8EpXEZVYOwU0yG4iWbprSVAcs=
