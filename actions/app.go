@@ -1,3 +1,4 @@
+// The actions package contains all controllers and application business logic
 package actions
 
 import (
