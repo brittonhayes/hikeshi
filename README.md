@@ -32,11 +32,11 @@ It isn't feature packed, but it does exactly what it needs to while you take car
 - Dark mode support by default.
 - Designed specifically for incident response.
 
-![Hikeshi Landing](/assets/images/HikeshiLanding.svg)
+![Hikeshi Landing](/assets/images/HikeshiLanding@2x.png)
 
-![Hikeshi Incident](/assets/images/HikeshiIncident.svg)
+![Hikeshi Incident](/assets/images/HikeshiIncident2x.png)
 
-![Hikeshi User](/assets/images/HikeshiUser.svg)
+![Hikeshi User](/assets/images/HikeshiUser@2x.png)
 
 
 [Powered by Buffalo](http://gobuffalo.io)
