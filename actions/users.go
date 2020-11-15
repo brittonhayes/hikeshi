@@ -85,7 +85,6 @@ func (v UserResource) Show(c buffalo.Context) error {
 
 	return responder.Wants("html", func(c buffalo.Context) error {
 		c.Set("user", user)
-
 		return c.Render(http.StatusOK, r.HTML("/users/show.plush.html"))
 	}).Wants("json", func(c buffalo.Context) error {
 		return c.Render(200, r.JSON(user))

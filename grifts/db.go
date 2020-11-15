@@ -48,18 +48,43 @@ var _ = Namespace("db", func() {
 
 		_ = Add("users", func(c *Context) error {
 
-			passwd, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.DefaultCost)
+			passwd := "Password"
+			passwdHash, _ := bcrypt.GenerateFromPassword([]byte(passwd), bcrypt.DefaultCost)
 
-			u := &models.User{
-				ID:           uuid.UUID{},
-				FirstName:    "John",
-				LastName:     "Doe",
-				Email:        "jdoe@example.com",
-				Role:         "admin",
-				Password:     "Password",
-				PasswordHash: string(passwd),
-				CreatedAt:    time.Time{},
-				UpdatedAt:    time.Time{},
+			u := []models.User{
+				{
+					ID:           uuid.UUID{},
+					FirstName:    "John",
+					LastName:     "Doe",
+					Email:        "jdoe@example.com",
+					Role:         "admin",
+					Password:     "Password",
+					PasswordHash: string(passwdHash),
+					CreatedAt:    time.Time{},
+					UpdatedAt:    time.Time{},
+				},
+				{
+					ID:           uuid.UUID{},
+					FirstName:    "Jane",
+					LastName:     "Doseph",
+					Email:        "jdoseph@example.com",
+					Role:         "analyst",
+					Password:     "Password",
+					PasswordHash: string(passwdHash),
+					CreatedAt:    time.Time{},
+					UpdatedAt:    time.Time{},
+				},
+				{
+					ID:           uuid.UUID{},
+					FirstName:    "Jeremy",
+					LastName:     "Does",
+					Email:        "jdoes@example.com",
+					Role:         "guest",
+					Password:     "Password",
+					PasswordHash: string(passwdHash),
+					CreatedAt:    time.Time{},
+					UpdatedAt:    time.Time{},
+				},
 			}
 
 			err := models.DB.Create(u)

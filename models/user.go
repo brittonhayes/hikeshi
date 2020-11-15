@@ -64,7 +64,7 @@ func (u *User) Validate(tx *pop.Connection) (*validate.Errors, error) {
 		&validators.StringIsPresent{Field: u.FirstName, Name: "First Name"},
 		&validators.StringIsPresent{Field: u.LastName, Name: "Last Name"},
 		&validators.StringIsPresent{Field: u.Role, Name: "Role"},
-		//&validators.StringInclusion{Field: u.Role, Name: "Valid Roles", List: []string{"admin", "agent", "guest"}},
+		&validators.StringInclusion{Field: u.Role, Name: "Valid Roles", List: []string{"admin", "agent", "guest"}},
 		&validators.StringIsPresent{Field: u.PasswordHash, Name: "PasswordHash"},
 		// check to see if the email address is already taken:
 		&validators.FuncValidator{

@@ -1,5 +1,6 @@
 create_table("incidents") {
 	t.Column("id", "uuid", {primary: true})
+	t.Column("permissions", "string")
 	t.Column("date", "date", {})
 	t.Column("date_closed", "date", {})
 	t.Column("severity", "string", {})

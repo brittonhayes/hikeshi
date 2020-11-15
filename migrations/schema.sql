@@ -26,6 +26,7 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.incidents (
     id uuid NOT NULL,
+    permissions character varying(255) NOT NULL,
     date date NOT NULL,
     date_closed date NOT NULL,
     severity character varying(255) NOT NULL,

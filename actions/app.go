@@ -2,17 +2,20 @@
 package actions
 
 import (
-	"github.com/gobuffalo/buffalo"
-	"github.com/gobuffalo/envy"
-	forcessl "github.com/gobuffalo/mw-forcessl"
-	paramlogger "github.com/gobuffalo/mw-paramlogger"
-	"github.com/unrolled/secure"
-
 	"github.com/brittonhayes/hikeshi/models"
+	"github.com/casbin/casbin/v2"
+	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/buffalo-pop/v2/pop/popmw"
+	"github.com/gobuffalo/envy"
 	csrf "github.com/gobuffalo/mw-csrf"
+	forcessl "github.com/gobuffalo/mw-forcessl"
 	i18n "github.com/gobuffalo/mw-i18n"
+	paramlogger "github.com/gobuffalo/mw-paramlogger"
 	"github.com/gobuffalo/packr/v2"
+	"github.com/gobuffalo/pop/v5"
+	rbac "github.com/kgosse/buffalo-mw-rbac"
+	"github.com/unrolled/secure"
+	"log"
 )
 
 // ENV is used to help switch settings based on where the
@@ -36,6 +39,7 @@ var T *i18n.Translator
 // declared after it to never be called.
 func App() *buffalo.App {
 	if app == nil {
+
 		app = buffalo.New(buffalo.Options{
 			Env:         ENV,
 			SessionName: "_hikeshi_session",
@@ -59,14 +63,44 @@ func App() *buffalo.App {
 		// Setup and use translations:
 		app.Use(translations())
 
-		app.GET("/", HomeHandler)
-		app.GET("/instructions", InstructionsIndex)
-		app.Resource("/incidents", IncidentsResource{})
-		app.Resource("/users/accounts", UserResource{})
-
 		//AuthMiddlewares
 		app.Use(SetCurrentUser)
 		app.Use(Authorize)
+
+		authEnforcer, err := casbin.NewEnforcer("rbac_model.conf", "rbac_policy.csv")
+		if err != nil {
+			log.Print(err)
+		}
+
+		// Create role func.
+		roleFunc := func(c buffalo.Context) (string, error) {
+			if uid := c.Session().Get("current_user_id"); uid != nil {
+				// Allocate an empty User
+				u := &models.User{}
+				c.Session().Get("current_user_id")
+				tx := c.Value("tx").(*pop.Connection)
+
+				err := tx.Find(u, uid)
+				if err != nil {
+					c.Flash().Add("danger", "Unauthorized")
+					return "guest", nil
+				}
+
+				c.Set("current_user", u)
+				return u.Role, nil
+			}
+
+			c.Flash().Add("danger", "Unauthorized")
+			return "guest", nil
+		}
+
+		app.Use(rbac.New(authEnforcer, roleFunc))
+
+		app.GET("/", HomeHandler)
+		app.GET("/instructions", InstructionsIndex)
+
+		app.Resource("/incidents", IncidentsResource{})
+		app.Resource("/users/accounts/", UserResource{})
 
 		//Routes for Auth
 		auth := app.Group("/auth")
@@ -80,9 +114,8 @@ func App() *buffalo.App {
 		users := app.Group("/users")
 		users.GET("/new", UsersNew)
 		users.POST("/", UsersCreate)
-		users.Middleware.Remove(Authorize)
 
-		app.ServeFiles("/assets", assetsBox) // serve files from the public directory
+		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 
 	return app
