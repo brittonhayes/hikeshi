@@ -19,7 +19,6 @@ require (
 	github.com/gobuffalo/plush/v4 v4.0.0
 	github.com/gobuffalo/pop/v5 v5.3.1
 	github.com/gobuffalo/suite/v3 v3.0.0
-	github.com/gobuffalo/validate v2.0.4+incompatible
 	github.com/gobuffalo/validate/v3 v3.3.0
 	github.com/gobuffalo/x v0.1.0
 	github.com/gofrs/uuid v3.3.0+incompatible

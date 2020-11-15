@@ -7,8 +7,9 @@ tasks:
 
   run:
     desc: Build and run hikeshi
-    cmds:
+    deps:
       - task: build
+    cmds:
       - ./bin/hikeshi dev
 
   dev:
@@ -19,6 +20,11 @@ tasks:
       - assets/**/*.scss
     cmds:
       - buffalo dev
+
+  docker:
+    desc: Start a postgres database with Docker
+    cmds:
+      - docker run --name hikeshi -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 
   build:
     desc: Build hikeshi

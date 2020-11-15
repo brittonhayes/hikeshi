@@ -82,7 +82,7 @@ func App() *buffalo.App {
 		users.POST("/", UsersCreate)
 		users.Middleware.Remove(Authorize)
 
-		app.ServeFiles("/", assetsBox) // serve files from the public directory
+		app.ServeFiles("/assets", assetsBox) // serve files from the public directory
 	}
 
 	return app
@@ -95,7 +95,7 @@ func App() *buffalo.App {
 func translations() buffalo.MiddlewareFunc {
 	var err error
 	if T, err = i18n.New(packr.New("app:locales", "../locales"), "en-US"); err != nil {
-		app.Stop(err)
+		_ = app.Stop(err)
 	}
 	return T.Middleware()
 }

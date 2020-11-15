@@ -7,6 +7,7 @@
 <%= f.InputTag("Email", { placeholder: "Your email address"}) %>
 <%= f.InputTag("FirstName", { placeholder: "Your first name", label: "First Name" } ) %>
 <%= f.InputTag("LastName", { placeholder: "Your last name", label: "Last Name" }) %>
+<%= f.SelectTag("Role", {options: {"Admin": "admin", "Analyst": "analyst", "Guest": "guest"}}) %>
 <%= f.InputTag("Password", { placeholder: "Password", type: "password"}) %>
 <%= f.InputTag("PasswordConfirmation", { placeholder: "Confirm Password", type: "password"}) %>
 <button class="btn bg-white-dm text-dark-dm bg-dark-light-lm text-white-lm" role="submit">Save</button>
