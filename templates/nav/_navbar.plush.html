@@ -37,6 +37,23 @@
     </ul>
 
     <div class="navbar-content ml-auto">
+        <%= if (current_user) { %>
+        <ul class="navbar-nav d-none d-md-flex">
+            <li class="nav-item dropdown with-arrow">
+                <a class="nav-link" data-toggle="dropdown" id="nav-link-dropdown-toggle">
+                    <i class="fa fa-user-cog ml-5" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-link-dropdown-toggle">
+                    <p class="dropdown-item text-monospace text-muted bg-very-dark-dm">
+                        <span>User:&nbsp;<%= current_user.FirstName %>&nbsp;<%= current_user.LastName %></span><br>
+                        <span>Email:&nbsp;<%= current_user.Email %></span><br>
+                        <span>Role:&nbsp;<%= current_user.Role %></span><br>
+                    </p>
+                    <%= linkTo(authPath(), {class: "dropdown-item text-danger", body: "Log out", data-method: "DELETE"})%>
+                </div>
+            </li>
+        </ul>
+        <% } %>
         <div>
             <a class="nav-link" id="darkmodeToggle">
                 <i class="fa fa-moon ml-5 hidden-dm"></i>
@@ -44,8 +61,5 @@
             </a>
         </div>
 
-        <div>
-            <%= linkTo(authPath(), {class: "nav-link text-danger", body: "Log out", data-method: "DELETE"})%>
-        </div>
     </div>
 </nav>

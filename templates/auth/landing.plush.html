@@ -1,29 +1,24 @@
 <div class="container">
     <div class="row justify-content-center mw-full">
         <div class="col align-items-center h-100">
-            <div class="card shadow-lg  text-center">
+            <div class="card bg-dark-light-dm border-0 text-center">
                 <h1 class="title text-center p-5"><strong>Hikeshi</strong>&nbsp;Incident Response</h1>
-
-                <%= if (current_user) { %>
-                <img src='/assets/images/home.svg' class="img-fluid rounded-top" style="height:200px;width:200px;"
+                <img src='/assets/images/logo.svg' class="img-fluid rounded-top" style="height:250px;width:250px;"
                      alt="...">
-                <h2 class="content-title">Welcome back, <%= current_user.FirstName %>!</h2>
+                <%= if (current_user) { %>
                 <br>
-                <br>
-                <hr>
+                <h2 class="content-title text-muted pb-20"></h2>
                 <p class="text-body">
-                    <%= linkTo(rootPath(), {class: "btn btn-primary", body: "Go Home"})%>
-                    <%= linkTo(authPath(), {class: "btn btn-link text-danger", body: "Sign Out", data-method: "DELETE"})%>
+                    <%= linkTo(rootPath(), {class: "btn bg-white-dm text-dark-dm bg-dark-light-lm text-white-lm", body:
+                    "Enter"})%>
+                    <%= linkTo(authPath(), {class: "btn btn-link text-white-dm",
+                    body: "Log out", data-method: "DELETE"})%>
                 </p>
                 <% } else { %>
-                <img src='/assets/images/safe.svg' class="img-fluid rounded-top" style="height:200px;width:200px;"
-                     alt="...">
-                <h2 class="content-title">Welcome</h2>
                 <br>
-                <br>
-                <hr>
                 <p>
-                    <%= linkTo(newAuthPath(), {class: "btn btn-primary", body: "Sign In"})%>
+                    <%= linkTo(newAuthPath(), {class: "btn btn-lg bg-white-dm text-dark-dm bg-dark-light-lm text-white-lm",
+                    body: "Sign In"})%>
                 </p>
                 <% } %>
 

@@ -2,11 +2,11 @@
   <div class="col-md-12">
     <%= for (k, messages) in flash { %>
       <%= for (msg) in messages { %>
-        <div class="alert alert-<%= k %>" role="alert">
-          <%= msg %>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <div class="alert alert-<%= k %>" role="alert" style="z-index: 100;">
+          <button class="close" data-dismiss="alert" type="button" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+          <%= msg %>
         </div>
       <% } %>
     <% } %>

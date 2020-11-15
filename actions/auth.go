@@ -8,7 +8,7 @@ import (
 	"github.com/brittonhayes/hikeshi/models"
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop/v5"
-	"github.com/gobuffalo/validate"
+	"github.com/gobuffalo/validate/v3"
 	"github.com/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -61,7 +61,7 @@ func AuthCreate(c buffalo.Context) error {
 		return bad()
 	}
 	c.Session().Set("current_user_id", u.ID)
-	c.Flash().Add("success", "Welcome Back to Buffalo!")
+	c.Flash().Add("success", "Welcome Back to Hikeshi!")
 
 	redirectURL := "/"
 	if redir, ok := c.Session().Get("redirectURL").(string); ok && redir != "" {
@@ -75,5 +75,5 @@ func AuthCreate(c buffalo.Context) error {
 func AuthDestroy(c buffalo.Context) error {
 	c.Session().Clear()
 	c.Flash().Add("success", "You have been logged out!")
-	return c.Redirect(302, "/")
+	return c.Redirect(302, "/auth")
 }

@@ -1,0 +1,12 @@
+p, admin, /*, *
+
+p, analyst, /*, GET
+p, analyst, /auth/*, *
+p, analyst, /users/*, GET
+p, analyst, /users/*, POST
+p, analyst, /incidents/*, *
+
+p, guest, /, *
+p, guest, /auth/*, *
+p, guest, /incidents/*, GET
+p, guest, /users/*, GET
