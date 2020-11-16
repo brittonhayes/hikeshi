@@ -99,6 +99,8 @@ func App() *buffalo.App {
 		app.GET("/", HomeHandler)
 		app.GET("/instructions", InstructionsIndex)
 
+		app.GET("/settings", SettingsIndex)
+
 		app.Resource("/incidents", IncidentsResource{})
 		app.Resource("/users/accounts/", UserResource{})
 
@@ -115,6 +117,8 @@ func App() *buffalo.App {
 		users.GET("/new", UsersNew)
 		users.POST("/", UsersCreate)
 
+		app.GET("/settings/index", SettingsIndex)
+		app.GET("/settings/edit", SettingsEdit)
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 
