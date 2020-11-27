@@ -2,6 +2,8 @@
 
 > Hikeshi is a security incident response application that keeps it simple to document security incidents, so you can focus on fighting fires. 
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/brittonhayes/hikeshi)](https://goreportcard.com/report/github.com/brittonhayes/hikeshi)
+![golangci-lint](https://github.com/brittonhayes/hikeshi/workflows/golangci-lint/badge.svg)
 ---
 
 ## Preview
@@ -32,11 +34,17 @@ It isn't feature packed, but it does exactly what it needs to while you take car
 - Dark mode support by default.
 - Designed specifically for incident response.
 
-![Hikeshi Landing](/assets/images/HikeshiLanding@2x.png)
+<details>
+  <summary>Show UI mockups</summary>
+  
+  ![Hikeshi Landing](/assets/images/HikeshiLanding@2x.png)
 
-![Hikeshi Incident](/assets/images/HikeshiIncident2x.png)
+  ![Hikeshi Incident](/assets/images/HikeshiIncident2x.png)
 
-![Hikeshi User](/assets/images/HikeshiUser@2x.png)
+  ![Hikeshi User](/assets/images/HikeshiUser@2x.png)
+
+</details>
+
 
 
 [Powered by Buffalo](http://gobuffalo.io)
