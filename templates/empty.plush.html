@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>Incident Response</title>
-    <link href="/assets/application.css" rel="stylesheet">
+    <%= stylesheetTag("application.css") %>
     <meta name="csrf-param" content="authenticity_token"/>
     <meta name="csrf-token" content="<%= authenticity_token %>"/>
     <link rel="icon" href='<%= assetPath("images/favicon.ico") %>'>
@@ -18,6 +18,6 @@
         <%= yield %>
     </div>
 </div>
-<script src="/assets/application.js"></script>
+<%= javascriptTag("application.js") %>
 </body>
 </html>

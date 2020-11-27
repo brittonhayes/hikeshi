@@ -4,6 +4,7 @@ go 1.15
 
 require (
 	github.com/Masterminds/semver/v3 v3.1.0 // indirect
+	github.com/casbin/casbin/v2 v2.19.0
 	github.com/fatih/color v1.10.0 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gobuffalo/buffalo v0.16.17
@@ -28,6 +29,7 @@ require (
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/gorilla/sessions v1.2.1 // indirect
 	github.com/jackc/pgx/v4 v4.9.2 // indirect
+	github.com/kgosse/buffalo-mw-rbac v0.0.0-20200624144123-255d64e7ce19
 	github.com/lib/pq v1.8.0 // indirect
 	github.com/markbates/grift v1.5.0
 	github.com/microcosm-cc/bluemonday v1.0.4 // indirect

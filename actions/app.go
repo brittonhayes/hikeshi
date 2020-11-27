@@ -2,7 +2,10 @@
 package actions
 
 import (
+	"log"
+
 	"github.com/brittonhayes/hikeshi/models"
+	"github.com/casbin/casbin/v2"
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/buffalo-pop/v2/pop/popmw"
 	"github.com/gobuffalo/envy"
@@ -11,6 +14,8 @@ import (
 	i18n "github.com/gobuffalo/mw-i18n"
 	paramlogger "github.com/gobuffalo/mw-paramlogger"
 	"github.com/gobuffalo/packr/v2"
+	"github.com/gobuffalo/pop/v5"
+	rbac "github.com/kgosse/buffalo-mw-rbac"
 	"github.com/unrolled/secure"
 )
 
@@ -59,37 +64,37 @@ func App() *buffalo.App {
 		// Setup and use translations:
 		app.Use(translations())
 
-		//AuthMiddlewares
+		// AuthMiddlewares
 		app.Use(SetCurrentUser)
 		app.Use(Authorize)
-		// authEnforcer, err := casbin.NewEnforcer("rbac_model.conf", "rbac_policy.csv")
-		// if err != nil {
-		// 	log.Print(err)
-		// }
+		authEnforcer, err := casbin.NewEnforcer("rbac_model.conf", "rbac_policy.csv")
+		if err != nil {
+			log.Print(err)
+		}
 
 		// Create role func.
-		// roleFunc := func(c buffalo.Context) (string, error) {
-		// 	if uid := c.Session().Get("current_user_id"); uid != nil {
-		// 		// Allocate an empty User
-		// 		u := &models.User{}
-		// 		c.Session().Get("current_user_id")
-		// 		tx := c.Value("tx").(*pop.Connection)
+		roleFunc := func(c buffalo.Context) (string, error) {
+			if uid := c.Session().Get("current_user_id"); uid != nil {
+				// Allocate an empty User
+				u := &models.User{}
+				c.Session().Get("current_user_id")
+				tx := c.Value("tx").(*pop.Connection)
 
-		// 		err := tx.Find(u, uid)
-		// 		if err != nil {
-		// 			c.Flash().Add("danger", "Unauthorized")
-		// 			return "guest", nil
-		// 		}
+				err := tx.Find(u, uid)
+				if err != nil {
+					c.Flash().Add("danger", "Unauthorized")
+					return "guest", nil
+				}
 
-		// 		c.Set("current_user", u)
-		// 		return u.Role, nil
-		// 	}
+				c.Set("current_user", u)
+				return u.Role, nil
+			}
 
-		// 	c.Flash().Add("danger", "Unauthorized")
-		// 	return "guest", nil
-		// }
+			c.Flash().Add("danger", "Unauthorized")
+			return "guest", nil
+		}
 
-		// app.Use(rbac.New(authEnforcer, roleFunc))
+		app.Use(rbac.New(authEnforcer, roleFunc))
 
 		app.GET("/", HomeHandler)
 		app.GET("/instructions", InstructionsIndex)
