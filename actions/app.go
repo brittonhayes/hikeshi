@@ -1,7 +1,9 @@
-// The actions package contains all controllers and application business logic
+// Package actions contains all controllers and application business logic
 package actions
 
 import (
+	"log"
+
 	"github.com/brittonhayes/hikeshi/models"
 	"github.com/casbin/casbin/v2"
 	"github.com/gobuffalo/buffalo"
@@ -15,7 +17,6 @@ import (
 	"github.com/gobuffalo/pop/v5"
 	rbac "github.com/kgosse/buffalo-mw-rbac"
 	"github.com/unrolled/secure"
-	"log"
 )
 
 // ENV is used to help switch settings based on where the
@@ -63,10 +64,9 @@ func App() *buffalo.App {
 		// Setup and use translations:
 		app.Use(translations())
 
-		//AuthMiddlewares
+		// AuthMiddlewares
 		app.Use(SetCurrentUser)
 		app.Use(Authorize)
-
 		authEnforcer, err := casbin.NewEnforcer("rbac_model.conf", "rbac_policy.csv")
 		if err != nil {
 			log.Print(err)
@@ -99,8 +99,17 @@ func App() *buffalo.App {
 		app.GET("/", HomeHandler)
 		app.GET("/instructions", InstructionsIndex)
 
+		app.GET("/settings/index", SettingsIndex)
+		app.GET("/settings/edit", SettingsEdit)
+		app.GET("/settings", SettingsIndex)
+
 		app.Resource("/incidents", IncidentsResource{})
 		app.Resource("/users/accounts/", UserResource{})
+
+		//Routes for User registration
+		users := app.Group("/users")
+		users.GET("/new", UsersNew)
+		users.POST("/", UsersCreate)
 
 		//Routes for Auth
 		auth := app.Group("/auth")
@@ -109,11 +118,6 @@ func App() *buffalo.App {
 		auth.POST("/new", AuthCreate)
 		auth.DELETE("/", AuthDestroy)
 		auth.Middleware.Skip(Authorize, AuthLanding, AuthNew, AuthCreate)
-
-		//Routes for User registration
-		users := app.Group("/users")
-		users.GET("/new", UsersNew)
-		users.POST("/", UsersCreate)
 
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}

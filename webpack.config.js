@@ -76,6 +76,7 @@ const configurator = {
     // sure your GO_ENV is set properly as `buffalo build` overrides NODE_ENV
     // with whatever GO_ENV is set to or "development".
     const env = process.env.NODE_ENV || "development";
+    console.log(env)
 
     var config = {
       mode: env,

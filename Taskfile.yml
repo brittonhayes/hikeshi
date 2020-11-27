@@ -14,12 +14,15 @@ tasks:
 
   dev:
     desc: Run hikeshi in developer mode
+    method: checksum
     sources:
       - actions/*.go
       - assets/**/*.js
       - assets/**/*.scss
+    generates:
+      - ./bin/hikeshi
     cmds:
-      - buffalo dev
+      - buffalo build
 
   docker:
     desc: Start a postgres database with Docker
