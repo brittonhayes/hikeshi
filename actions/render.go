@@ -1,13 +1,14 @@
 package actions
 
 import (
+	"html/template"
+	"strings"
+	"time"
+
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/buffalo/render"
 	"github.com/gobuffalo/packr/v2"
 	"github.com/gobuffalo/plush/v4"
-	"html/template"
-	"strings"
-	"time"
 )
 
 var r *render.Engine
@@ -28,7 +29,7 @@ func init() {
 			"toTitle":     toTitle,
 			"prettyDate":  prettyDate,
 			"csrf": func() template.HTML {
-				return "<input name=\"authenticity_token\" value=\"<%= authenticity_token %>\" type=\"hidden\">"
+				return `<input name="authenticity_token" value="<%= authenticity_token %>" type="hidden">`
 			},
 		},
 	})

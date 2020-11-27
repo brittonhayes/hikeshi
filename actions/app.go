@@ -1,9 +1,8 @@
-// The actions package contains all controllers and application business logic
+// Package actions contains all controllers and application business logic
 package actions
 
 import (
 	"github.com/brittonhayes/hikeshi/models"
-	"github.com/casbin/casbin/v2"
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/buffalo-pop/v2/pop/popmw"
 	"github.com/gobuffalo/envy"
@@ -12,10 +11,7 @@ import (
 	i18n "github.com/gobuffalo/mw-i18n"
 	paramlogger "github.com/gobuffalo/mw-paramlogger"
 	"github.com/gobuffalo/packr/v2"
-	"github.com/gobuffalo/pop/v5"
-	rbac "github.com/kgosse/buffalo-mw-rbac"
 	"github.com/unrolled/secure"
-	"log"
 )
 
 // ENV is used to help switch settings based on where the
@@ -66,43 +62,49 @@ func App() *buffalo.App {
 		//AuthMiddlewares
 		app.Use(SetCurrentUser)
 		app.Use(Authorize)
-
-		authEnforcer, err := casbin.NewEnforcer("rbac_model.conf", "rbac_policy.csv")
-		if err != nil {
-			log.Print(err)
-		}
+		// authEnforcer, err := casbin.NewEnforcer("rbac_model.conf", "rbac_policy.csv")
+		// if err != nil {
+		// 	log.Print(err)
+		// }
 
 		// Create role func.
-		roleFunc := func(c buffalo.Context) (string, error) {
-			if uid := c.Session().Get("current_user_id"); uid != nil {
-				// Allocate an empty User
-				u := &models.User{}
-				c.Session().Get("current_user_id")
-				tx := c.Value("tx").(*pop.Connection)
+		// roleFunc := func(c buffalo.Context) (string, error) {
+		// 	if uid := c.Session().Get("current_user_id"); uid != nil {
+		// 		// Allocate an empty User
+		// 		u := &models.User{}
+		// 		c.Session().Get("current_user_id")
+		// 		tx := c.Value("tx").(*pop.Connection)
 
-				err := tx.Find(u, uid)
-				if err != nil {
-					c.Flash().Add("danger", "Unauthorized")
-					return "guest", nil
-				}
+		// 		err := tx.Find(u, uid)
+		// 		if err != nil {
+		// 			c.Flash().Add("danger", "Unauthorized")
+		// 			return "guest", nil
+		// 		}
 
-				c.Set("current_user", u)
-				return u.Role, nil
-			}
+		// 		c.Set("current_user", u)
+		// 		return u.Role, nil
+		// 	}
 
-			c.Flash().Add("danger", "Unauthorized")
-			return "guest", nil
-		}
+		// 	c.Flash().Add("danger", "Unauthorized")
+		// 	return "guest", nil
+		// }
 
-		app.Use(rbac.New(authEnforcer, roleFunc))
+		// app.Use(rbac.New(authEnforcer, roleFunc))
 
 		app.GET("/", HomeHandler)
 		app.GET("/instructions", InstructionsIndex)
 
+		app.GET("/settings/index", SettingsIndex)
+		app.GET("/settings/edit", SettingsEdit)
 		app.GET("/settings", SettingsIndex)
 
 		app.Resource("/incidents", IncidentsResource{})
 		app.Resource("/users/accounts/", UserResource{})
+
+		//Routes for User registration
+		users := app.Group("/users")
+		users.GET("/new", UsersNew)
+		users.POST("/", UsersCreate)
 
 		//Routes for Auth
 		auth := app.Group("/auth")
@@ -112,13 +114,6 @@ func App() *buffalo.App {
 		auth.DELETE("/", AuthDestroy)
 		auth.Middleware.Skip(Authorize, AuthLanding, AuthNew, AuthCreate)
 
-		//Routes for User registration
-		users := app.Group("/users")
-		users.GET("/new", UsersNew)
-		users.POST("/", UsersCreate)
-
-		app.GET("/settings/index", SettingsIndex)
-		app.GET("/settings/edit", SettingsEdit)
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 

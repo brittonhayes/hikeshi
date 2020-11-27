@@ -1,16 +1,16 @@
 @use "sass:map";
 
 $theme-colors: (
-        "dark": #012B30,
-        "light": #F8F9F9,
-        "primary": #1F73B7,
-        "info": #30AABC,
-        "warning": #ED8F1C,
-        "danger": #CC3340,
-        "zd_kale": #17494D,
-        "zd_teal": #02A191,
-        "zd_mint": #299C66,
-        "zd_royal": #7986D8,
+  "dark": #012b30,
+  "light": #f8f9f9,
+  "primary": #1f73b7,
+  "info": #30aabc,
+  "warning": #ed8f1c,
+  "danger": #cc3340,
+  "zd_kale": #17494d,
+  "zd_teal": #02a191,
+  "zd_mint": #299c66,
+  "zd_royal": #7986d8,
 );
 
 .ease {
@@ -20,5 +20,3 @@ $theme-colors: (
 .rotate-180 {
   transform: rotate(180deg);
 }
-
-
