@@ -3,16 +3,28 @@
         <code>Incident Details</code>
     </h3>
     <div class="float-right">
-        <%= linkTo(incidentsPath(), {class: "btn btn-info"}) { %>
+        <%= linkTo([incidentsPath(),"/", "?per_page=10"], {class: "btn btn-info"}) { %>
         Back to all Incidents
         <% } %>
         <%= linkTo(editIncidentPath({ incident_id: incident.ID }), {class: "btn btn-warning", body: "Edit"}) %>
-        <%= linkTo(incidentPath({ incident_id: incident.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Delete"}) %>
+        <%= linkTo(incidentPath({ incident_id: incident.ID }), {class: "btn btn-danger", "data-method": "DELETE",
+        "data-confirm": "Are you sure?", body: "Delete"}) %>
+    </div>
+</div>
+
+<div class="modal ie-scroll-fix" id="incident-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content w-600 markdown">
+            <h2><%= toTitle() { %> <%= incident.Title %> <% } %></h2>
+            <p>
+                <%= incident.Summary %>
+            </p>
+        </div>
     </div>
 </div>
 
 
-<div class="w-full mw-full ">
+<div class="w-full mw-800">
     <div class="card p-10 shadow-lg">
         <div class="content">
             <h2 class="content-title text-white-dm">
@@ -44,12 +56,22 @@
                 <b>Scope:</b> <%= incident.Scope %>
             </code>
             <br/>
+            <code class="text-muted">
+                <b>Customers Affected:</b> <%= incident.AffectedCustomers %>
+            </code>
+            <br/>
             <hr>
-            <div class="container bg-dark-light p-10">
-                <code class="p-5 text-light-lm">
+            <div class="bg-dark-light p-10">
+                <code class="container p-5 text-light-lm">
+                    <%= truncateString() { %>
                     <%= incident.Summary %>
+                    <% } %>
                 </code>
             </div>
+            <br>
+            <%= if (maxlength) { %>
+            <a href="#incident-modal">View full summary</a>
+            <% } %>
         </div>
     </div>
 </div>

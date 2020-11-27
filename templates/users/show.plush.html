@@ -1,7 +1,7 @@
 <div class="py-4 mb-2">
     <h3 class="d-inline-block">User Details</h3>
     <div class="float-right">
-        <%= linkTo(usersAccountsPath(), {class: "btn btn-info"}) { %>
+        <%= linkTo([usersAccountsPath(), "/", "?per_page=10"], {class: "btn btn-info"}) { %>
         Back to all Users
         <% } %>
     </div>

@@ -2,8 +2,6 @@
 package actions
 
 import (
-	"log"
-
 	"github.com/brittonhayes/hikeshi/models"
 	"github.com/casbin/casbin/v2"
 	"github.com/gobuffalo/buffalo"
@@ -17,6 +15,7 @@ import (
 	"github.com/gobuffalo/pop/v5"
 	rbac "github.com/kgosse/buffalo-mw-rbac"
 	"github.com/unrolled/secure"
+	"log"
 )
 
 // ENV is used to help switch settings based on where the

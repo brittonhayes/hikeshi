@@ -3,10 +3,11 @@ package actions
 import (
 	"encoding/json"
 	"fmt"
+	"log"
+
 	"github.com/brittonhayes/hikeshi/models"
 	"github.com/gobuffalo/buffalo/worker"
 	"github.com/slack-go/slack"
-	"log"
 )
 
 //var w worker.Worker

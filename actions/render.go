@@ -14,6 +14,8 @@ import (
 var r *render.Engine
 var assetsBox = packr.New("app:assets", "../public")
 
+const MaxStringLen = 500
+
 func init() {
 	r = render.New(render.Options{
 		// HTML layout to be used for all HTML requests:
@@ -25,9 +27,10 @@ func init() {
 
 		// Add template helpers here:
 		Helpers: render.Helpers{
-			"activeClass": activeClass,
-			"toTitle":     toTitle,
-			"prettyDate":  prettyDate,
+			"activeClass":      activeClass,
+			"toTitle":          toTitle,
+			"prettyDate":       prettyDate,
+			"truncateString":   truncateString,
 			"csrf": func() template.HTML {
 				return `<input name="authenticity_token" value="<%= authenticity_token %>" type="hidden">`
 			},
@@ -50,6 +53,22 @@ func toTitle(help plush.HelperContext) (string, error) {
 		return "", err
 	}
 	return strings.Title(s), nil
+}
+
+func truncateString(help plush.HelperContext) (string, error) {
+	num := MaxStringLen
+	s, err := help.Block()
+	if err != nil {
+		return "", err
+	}
+	output := s
+	if len(s) > num {
+		if num > 3 {
+			num -= 3
+		}
+		output = s[0:num] + "..."
+	}
+	return output, err
 }
 
 func prettyDate(help plush.HelperContext) (string, error) {

@@ -1,48 +1,62 @@
 package grifts
 
 import (
-	"golang.org/x/crypto/bcrypt"
+	"fmt"
+	"github.com/Pallinder/go-randomdata"
 	"log"
+	"math/rand"
 	"time"
+
+	"golang.org/x/crypto/bcrypt"
 
 	"github.com/brittonhayes/hikeshi/models"
 	"github.com/gofrs/uuid"
 	. "github.com/markbates/grift/grift"
 )
 
+func randomDate() time.Time {
+	min := time.Date(2017, 1, 0, 0, 0, 0, 0, time.UTC).Unix()
+	max := time.Date(2021, 1, 0, 0, 0, 0, 0, time.UTC).Unix()
+	delta := max - min
+
+	sec := rand.Int63n(delta) + min
+	return time.Unix(sec, 0)
+}
+func randomIncident() string {
+	profile := randomdata.GenerateProfile(randomdata.Male | randomdata.Female | randomdata.RandomGender)
+	return fmt.Sprintf("The Security incident was initially caused by %s %s having their password compromised. This severity event was performed by a malicious actor who appeared under the username, %s when authenticating to our single sign-on service. The employee who had their credentials compromised is based in our %s office. The attacker seems to be targeting employees of %s origin.", profile.Name.First, profile.Name.Last, profile.Login.Username, profile.Location.City, profile.Nat)
+}
+
 var _ = Namespace("db", func() {
 	_ = Namespace("seed", func() {
-		summary := `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consequatur doloribus eius et,
-                itaque molestias neque officia quaerat! Ab asperiores expedita fugit ipsa itaque, iure iusto nesciunt
-                odio quaerat quidem rerum, sint sit, temporibus vel veniam. Aperiam dolor, dolore dolorum error facilis
-                hic molestiae odit repellendus similique temporibus! Aliquam consequatur deserunt earum, fugiat, illum
-                ipsam libero molestias, quasi quo repellat sed soluta velit veniam! A numquam quaerat quia tempora
-                veniam!`
-
 		_ = Desc("incidents", "Seed incidents into the database")
 		_ = Add("incidents", func(c *Context) error {
-			i := &models.Incident{
-				ID:                uuid.UUID{},
-				Date:              time.Time{},
-				DateClosed:        time.Time{},
-				Severity:          "High",
-				Title:             "Example incident",
-				Summary:           summary,
-				Scope:             "example scope",
-				ResponsibleParty:  "Example party",
-				Result:            "example result",
-				Mitigation:        "example mitigation",
-				AffectedCustomers: "example affected",
-				RootCause:         "example root cause",
-				SlackChannel:      "#slack-channel-example",
-				CreatedAt:         time.Time{},
-				UpdatedAt:         time.Time{},
+
+			for i := 0; i < 15; i++ {
+				incident := &models.Incident{
+					ID:                uuid.UUID{},
+					Date:              randomDate(),
+					DateClosed:        randomDate(),
+					Severity:          randomdata.StringSample("Low", "Moderate", "High", "Critical"),
+					Title:             randomdata.StringSample("Compromised password", "Leaked API token", "Github repo public", "Insider threat"),
+					Summary:           randomIncident(),
+					Scope:             fmt.Sprintf("%v internal stakeholders", randomdata.Number(10, 50)),
+					ResponsibleParty:  randomdata.FullName(randomdata.RandomGender),
+					Result:            randomdata.StringSample("The situation was resolved by the user", "The incident is ongoing", "We are in communication with authorities"),
+					Mitigation:        randomdata.StringSample("All credentials rotated", "Affected customers notified", "Employee enrolled in thorough security training"),
+					AffectedCustomers: fmt.Sprintf("%v customers were affected", randomdata.Number(10, 10000)),
+					RootCause:         randomdata.StringSample("Compromised password", "Leaked API token", "Github repo public", "Insider threat"),
+					SlackChannel:      fmt.Sprintf("#security-incident-%v", randomdata.Number(12,200)),
+					CreatedAt:         randomDate(),
+					UpdatedAt:         randomDate(),
+				}
+
+				err := models.DB.Create(incident)
+				if err != nil {
+					log.Fatal(err)
+				}
 			}
 
-			err := models.DB.Create(i)
-			if err != nil {
-				log.Fatal(err)
-			}
 			return nil
 		})
 

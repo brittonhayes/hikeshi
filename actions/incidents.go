@@ -79,7 +79,10 @@ func (v IncidentsResource) Show(c buffalo.Context) error {
 
 	return responder.Wants("html", func(c buffalo.Context) error {
 		c.Set("incident", incident)
-
+		c.Set("maxlength", false)
+		if len(incident.Summary) > MaxStringLen {
+			c.Set("maxlength", true)
+		}
 		return c.Render(http.StatusOK, r.HTML("/incidents/show.plush.html"))
 	}).Wants("json", func(c buffalo.Context) error {
 		return c.Render(200, r.JSON(incident))

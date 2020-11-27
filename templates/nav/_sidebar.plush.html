@@ -9,7 +9,7 @@
           </span>
             Home
         </a>
-        <a href="<%= incidentsPath() %>"
+        <a href="<%= incidentsPath() %>?per_page=10"
            class='sidebar-link sidebar-link-with-icon <%= activeClass("incidentsPath") %>'>
           <span class="sidebar-icon">
             <i class="fa fa-exclamation" aria-hidden="true"></i>
@@ -20,7 +20,7 @@
 
         <h5 class="sidebar-title">Admin</h5>
         <div class="sidebar-divider"></div>
-        <a href='<%= usersAccountsPath() %>'
+        <a href='<%= usersAccountsPath() %>?per_page=10'
            class='sidebar-link sidebar-link-with-icon <%= activeClass("accountsPath") %>'>
       <span class="sidebar-icon">
         <i class="fa fa-users" aria-hidden="true"></i>

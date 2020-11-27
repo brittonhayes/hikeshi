@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/brittonhayes/hikeshi/models"
 	"github.com/gobuffalo/buffalo"
@@ -21,6 +22,7 @@ func AuthLanding(c buffalo.Context) error {
 // AuthNew loads the signin page
 func AuthNew(c buffalo.Context) error {
 	c.Set("user", models.User{})
+	c.Cookies().Set("halfmoon_preferredMode", "dark-mode", 30*24*time.Hour)
 	return c.Render(200, r.HTML("auth/new.plush.html", "empty.plush.html"))
 }
 
