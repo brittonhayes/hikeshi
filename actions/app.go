@@ -89,7 +89,6 @@ func App() *buffalo.App {
 				return u.Role, nil
 			}
 
-			c.Flash().Add("danger", "Unauthorized")
 			return "guest", nil
 		}
 
