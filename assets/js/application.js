@@ -6,8 +6,10 @@ window.addEventListener('DOMContentLoaded', () => {
 })
 
 const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebarToggleIcon = document.getElementById('sidebar-toggle-icon');
 sidebarToggle.addEventListener('click', () => {
-    sidebarToggle.classList.toggle("rotate-180");
+    sidebarToggleIcon.classList.toggle("fa-chevron-left");
+    sidebarToggleIcon.classList.toggle("fa-chevron-right");
     halfmoon.toggleSidebar();
 })
 

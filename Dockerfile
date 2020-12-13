@@ -20,7 +20,7 @@ COPY go.sum go.sum
 RUN go mod download
 
 ADD . .
-RUN buffalo build --static -o /bin/app
+RUN buffalo build --static -o /bin/hikeshi
 
 FROM alpine
 RUN apk add --no-cache bash
@@ -33,7 +33,7 @@ RUN chmod +x /wait
 
 WORKDIR /bin/
 
-COPY --from=builder /bin/app .
+COPY --from=builder /bin/hikeshi .
 
 
 

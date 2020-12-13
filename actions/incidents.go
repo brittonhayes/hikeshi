@@ -50,7 +50,6 @@ func (v IncidentsResource) List(c buffalo.Context) error {
 	return responder.Wants("html", func(c buffalo.Context) error {
 		// Add the paginator to the context so it can be used in the template.
 		c.Set("pagination", q.Paginator)
-
 		c.Set("incidents", incidents)
 		return c.Render(http.StatusOK, r.HTML("/incidents/index.plush.html"))
 	}).Wants("json", func(c buffalo.Context) error {

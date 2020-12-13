@@ -3,42 +3,43 @@ version: '3'
 tasks:
   default:
     cmds:
+      - task: build
       - task: run
 
   run:
-    desc: Build and run hikeshi
-    deps:
-      - task: build
+    desc: Run hikeshi
     cmds:
       - ./bin/hikeshi
-
-  dev:
-    desc: Run hikeshi in developer mode
-    method: checksum
-    sources:
-      - actions/*.go
-      - assets/**/*.js
-      - assets/**/*.scss
-    generates:
-      - ./bin/hikeshi
-    cmds:
-      - buffalo build
-
-  docker:
-    desc: Start a postgres database with Docker
-    cmds:
-      - docker run -p 1234:5432 -e POSTGRES_DB=hikeshi_development -e POSTGRES_USER=hikeshi -e POSTGRES_PASSWORD=postgres -d postgres:alpine
 
   build:
     desc: Build hikeshi
     cmds:
       - buffalo build
 
-  release:
-    desc: Update release tags and push out new release
+  init:
+    desc: Initialize the database
     cmds:
-      - git tag $(svu patch) -m "Latest release" $(git rev-parse --short HEAD)
-      - goreleaser --rm-dist
+      - task: db
+      - ./bin/hikeshi migrate
+      - ./bin/hikeshi task db:seed:users
 
-  includes:
-    install: ./Taskfile_{{OS}}.yml
+
+  dev:
+    desc: Run hikeshi in developer mode
+    sources:
+      - actions/*.go
+      - assets/**/*.js
+      - assets/**/*.scss
+      - templates/*.plush.html
+    generates:
+      - ./a/*
+      - ./tmp/*
+    cmds:
+      - packr2
+      - buffalo dev
+
+  db:
+    desc: Start a postgres database with Docker
+    cmds:
+      - docker run -p 1234:5432 -e POSTGRES_DB=hikeshi_development -e POSTGRES_USER=hikeshi -e POSTGRES_PASSWORD=postgres -d postgres:alpine
+

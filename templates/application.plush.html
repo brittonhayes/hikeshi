@@ -6,25 +6,25 @@
     <meta charset="utf-8">
     <title>Hikeshi</title>
     <%= stylesheetTag("application.css") %>
-    <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="<%= authenticity_token %>" />
+    <meta name="csrf-param" content="authenticity_token"/>
+    <meta name="csrf-token" content="<%= authenticity_token %>"/>
     <link rel="icon" href='<%= assetPath("images/favicon.ico") %>'>
 </head>
 
-<body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true"
-    data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
-    <div class="page-wrapper with-navbar with-sidebar bg-light-lm text-muted-lm">
-        <%= partial("nav/navbar.html")%>
+<body class="with-custom-webkit-scrollbars with-custom-css-scrollbars <%= halfmoon_preferredMode %>"
+      data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true">
+<div class="page-wrapper with-navbar with-sidebar bg-light-lm text-muted-lm">
+    <%= partial("nav/navbar.html")%>
     <%= partial("nav/sidebar.html")%>
     <%= partial("flash.html") %>
-        <div class="sticky-alerts"></div>
-        <div class="content-wrapper">
-            <div class="content">
-                <%= yield %>
-            </div>
+    <div class="sticky-alerts"></div>
+    <div class="content-wrapper">
+        <div class="content">
+            <%= yield %>
         </div>
     </div>
-    <%= javascriptTag("application.js") %>
+</div>
+<%= javascriptTag("application.js") %>
 </body>
 
 </html>

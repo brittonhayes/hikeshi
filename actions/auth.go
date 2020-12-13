@@ -2,16 +2,14 @@ package actions
 
 import (
 	"database/sql"
-	"net/http"
-	"strings"
-	"time"
-
 	"github.com/brittonhayes/hikeshi/models"
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop/v5"
 	"github.com/gobuffalo/validate/v3"
 	"github.com/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
+	"net/http"
+	"strings"
 )
 
 // AuthLanding shows a landing page to login
@@ -22,7 +20,6 @@ func AuthLanding(c buffalo.Context) error {
 // AuthNew loads the signin page
 func AuthNew(c buffalo.Context) error {
 	c.Set("user", models.User{})
-	c.Cookies().Set("halfmoon_preferredMode", "dark-mode", 30*24*time.Hour)
 	return c.Render(200, r.HTML("auth/new.plush.html", "empty.plush.html"))
 }
 
