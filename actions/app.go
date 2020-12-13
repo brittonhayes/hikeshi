@@ -2,6 +2,7 @@
 package actions
 
 import (
+	"github.com/brittonhayes/hikeshi/middleware"
 	"github.com/brittonhayes/hikeshi/models"
 	"github.com/casbin/casbin/v2"
 	"github.com/gobuffalo/buffalo"
@@ -44,6 +45,9 @@ func App() *buffalo.App {
 			Env:         ENV,
 			SessionName: "_hikeshi_session",
 		})
+
+		// Dark mode Middleware
+		app.Use(middleware.DarkMode)
 
 		// Automatically redirect to SSL
 		app.Use(forceSSL())

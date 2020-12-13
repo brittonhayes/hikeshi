@@ -27,10 +27,10 @@ func init() {
 
 		// Add template helpers here:
 		Helpers: render.Helpers{
-			"activeClass":      activeClass,
-			"toTitle":          toTitle,
-			"prettyDate":       prettyDate,
-			"truncateString":   truncateString,
+			"activeClass":    activeClass,
+			"toTitle":        toTitle,
+			"prettyDate":     prettyDate,
+			"truncateString": truncateString,
 			"csrf": func() template.HTML {
 				return `<input name="authenticity_token" value="<%= authenticity_token %>" type="hidden">`
 			},

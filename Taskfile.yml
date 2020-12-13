@@ -11,12 +11,26 @@ tasks:
     cmds:
       - ./bin/hikeshi
 
+  build:
+    desc: Build hikeshi
+    cmds:
+      - buffalo build
+
+  init:
+    desc: Initialize the database
+    cmds:
+      - task: db
+      - ./bin/hikeshi migrate
+      - ./bin/hikeshi task db:seed:users
+
+
   dev:
     desc: Run hikeshi in developer mode
     sources:
       - actions/*.go
       - assets/**/*.js
       - assets/**/*.scss
+      - templates/*.plush.html
     generates:
       - ./a/*
       - ./tmp/*
@@ -24,16 +38,8 @@ tasks:
       - packr2
       - buffalo dev
 
-  docker:
+  db:
     desc: Start a postgres database with Docker
     cmds:
-      - docker run -p 1234:5432 \
-        -e POSTGRES_DB=hikeshi_development \
-        -e POSTGRES_USER=hikeshi \
-        -e POSTGRES_PASSWORD=postgres \
-        -d postgres:alpine
+      - docker run -p 1234:5432 -e POSTGRES_DB=hikeshi_development -e POSTGRES_USER=hikeshi -e POSTGRES_PASSWORD=postgres -d postgres:alpine
 
-  build:
-    desc: Build hikeshi
-    cmds:
-      - buffalo build
