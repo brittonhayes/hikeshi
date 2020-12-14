@@ -1,5 +1,5 @@
 <!-- Content -->
-<div class="content">
+<div class="content pt-10">
     <h1 class="title text-muted" style="opacity: 0.1;">
         <code><strong>Hikeshi</strong>&nbsp;Incident Response</code>
     </h1>
@@ -7,31 +7,191 @@
 <div class="container-fluid">
     <!-- First row -->
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12">
             <div class="card">
+                <h2 class="content-title">Timeline</h2>
                 <canvas id="overview-bar"></canvas>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12">
             <div class="card">
-                <h2 class="content-title">
-                    <%= numIncidents %>
+                <h2 class="content-title">Triage</h2>
+                <canvas id="overview-pie"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-12">
+            <div class="card text-center">
+                <h2 class="title">
+                    <%= OpenIncidents %>
                 </h2>
+                <p>
+                    Open Incidents
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="card text-center">
+                <h2 class="title">
+                    <%= ClosedIncidents %>
+                </h2>
+                <p>
+                    Closed Incidents
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="card text-center">
+                <h2 class="title">
+                    <%= ActiveUsers %>
+                </h2>
+                <p>
+                    Active Users
+                </p>
             </div>
         </div>
     </div>
     <!-- Second row -->
     <div class="row">
-        <div class="col-6">
+        <div class="col-12">
             <div class="card">
-                ...
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="card">
-                ...
+                <h2 class="content-title">Recent Incidents</h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Severity</th>
+                        <th>Last Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%= for (incident) in incidents { %>
+                    <tr>
+                        <td>
+                            <%= toTitle() { %>
+                            <%= incident.Title %>
+                            <% } %>
+                        </td>
+                        <td><%= incident.Severity %></td>
+                        <td>
+                            <%= prettyDate() { %>
+                            <%= incident.UpdatedAt %>
+                            <% } %>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn" data-toggle="dropdown" type="button" id="dropdown-toggle-btn-1"
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
+                                    Actions<i class="fa fa-angle-down ml-5" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdown-toggle-btn-1">
+                                    <%= linkTo(incidentPath({ incident_id: incident.ID }), {class: "dropdown-item",
+                                    body: "View"}) %>
+                                    <%= linkTo(incidentPath({ incident_id: incident.ID }), {class: "dropdown-item",
+                                    body: "Edit"}) %>
+                                    <%= linkTo(incidentPath({ incident_id: incident.ID }), {class: "dropdown-item
+                                    text-danger", "data-method": "DELETE",
+                                    "data-confirm": "Are you sure?", body: "Destroy"}) %>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <%= paginator(pagination) %>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
-<%= javascriptTag("charts.js") %>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script type="text/javascript">
+    const OverviewCtx = document.getElementById('overview-bar');
+    const PieCtx = document.getElementById('overview-pie');
+    const OverviewBar = new Chart(OverviewCtx, {
+        type: 'line',
+        canvas: {
+            parentNode: {
+                style: {
+                    width: "20%",
+                }
+            }
+        },
+        maintainAspectRatio: false,
+        data: {
+            labels: ['October', 'November', 'December', 'January', 'February', 'March'],
+            datasets: [{
+                label: 'Incidents by Month',
+                data: ['<%= len(incidents) %>', 5, 4, 8, 10, 3],
+                backgroundColor: 'rgb(27,99,222,0.2)',
+                borderColor: 'rgb(19,132,253,0.5)',
+                pointBackgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                pointBorderColor: [
+                    'rgba(255, 99, 133, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    const OverviewPie = new Chart(PieCtx, {
+        type: 'pie',
+        canvas: {
+            parentNode: {
+                style: {
+                    width: "20%",
+                }
+            }
+        },
+        maintainAspectRatio: true,
+        data: {
+            labels: ['Open', 'Closed'],
+            datasets: [{
+                label: 'Percentage of incidents closed',
+                data: ['<%= OpenIncidents %>', '<%= ClosedIncidents %>'],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 133, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 2
+            }]
+        },
+    });
+</script>

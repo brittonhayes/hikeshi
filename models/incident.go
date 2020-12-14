@@ -15,6 +15,7 @@ type Incident struct {
 	ID                uuid.UUID `json:"id" db:"id"`
 	Date              time.Time `json:"date" db:"date"`
 	DateClosed        time.Time `json:"date_closed" db:"date_closed"`
+	Closed            bool      `json:"closed" db:"closed"`
 	Permissions       string    `json:"permissions" db:"permissions"`
 	Severity          string    `json:"severity" db:"severity"`
 	Title             string    `json:"title" db:"title"`

@@ -15,20 +15,39 @@ func HomeHandler(c buffalo.Context) error {
 	if !ok {
 		return fmt.Errorf("no transaction found")
 	}
-
 	incidents := &models.Incidents{}
+	users := &models.Users{}
 
 	// Paginate results. Params "page" and "per_page" control pagination.
 	// Default values are "page=1" and "per_page=20".
 	q := tx.PaginateFromParams(c.Params())
 
-	// Retrieve all Incidents from the DB
-	count, err := q.Count(incidents)
+	queryOpen := tx.Where("closed = ?", false)
+	countOpen, err := queryOpen.Count(incidents)
 	if err != nil {
 		return err
 	}
 
-	c.Set("numIncidents", count)
+	queryClosed := tx.Where("closed = ?", true)
+	countClosed, err := queryClosed.Count(incidents)
+	if err != nil {
+		return err
+	}
 
+	queryUsers := tx.Where("role = 'admin' OR role = 'analyst' OR role = 'guest'")
+	countUsers, err := queryUsers.Count(users)
+	if err != nil {
+		return err
+	}
+
+	if err := tx.Limit(5).All(incidents); err != nil {
+		return err
+	}
+
+	c.Set("OpenIncidents", countOpen)
+	c.Set("ClosedIncidents", countClosed)
+	c.Set("incidents", incidents)
+	c.Set("ActiveUsers", countUsers)
+	c.Set("pagination", q.Paginator)
 	return c.Render(http.StatusOK, r.HTML("index.html"))
 }

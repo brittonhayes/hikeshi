@@ -23,13 +23,18 @@ tasks:
     desc: Run hikeshi in developer mode
     deps: [ assets ]
     sources:
+      - assets/*
       - templates/**/*.html
       - templates/*.html
+      - actions/*
+      - middleware/*
+      - models/*
     generates:
       - tmp/hikeshi-build
     cmds:
       - go build -v -tags development -o tmp/hikeshi-build
       - ./tmp/hikeshi-build
+    method: timestamp
 
   build:
     desc: Build hikeshi

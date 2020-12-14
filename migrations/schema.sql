@@ -29,6 +29,7 @@ CREATE TABLE public.incidents (
     permissions character varying(255) NOT NULL,
     date date NOT NULL,
     date_closed date NOT NULL,
+    closed boolean NOT NULL,
     severity character varying(255) NOT NULL,
     title character varying(255) NOT NULL,
     summary text NOT NULL,

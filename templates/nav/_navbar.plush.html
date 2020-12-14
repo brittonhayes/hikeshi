@@ -15,6 +15,12 @@
         <li class='nav-item <%= activeClass("instructionsIndexPath") %>'>
             <a href='<%= instructionsPath() %>' class='nav-link'>Instructions</a>
         </li>
+        <li class='nav-item <%= activeClass("usersAccountsPath") %> hidden-lg-and-up'>
+            <a href='<%= usersAccountsPath() %>' class='nav-link'>Users</a>
+        </li>
+        <li class='nav-item <%= activeClass("incidentsPath") %> hidden-lg-and-up'>
+            <a href='<%= incidentsPath() %>' class='nav-link'>Incidents</a>
+        </li>
         <li class="nav-item dropdown with-arrow">
             <a class="nav-link" data-toggle="dropdown" id="nav-link-dropdown-toggle">
                 Create New
@@ -46,7 +52,8 @@
                         <span>Email:&nbsp;<%= current_user.Email %></span><br>
                         <span>Role:&nbsp;<%= current_user.Role %></span><br>
                     </p>
-                    <%= linkTo(authPath(), {class: "dropdown-item text-danger", body: "Log out", data-method: "DELETE"})%>
+                    <%= linkTo(authPath(), {class: "dropdown-item text-danger", body: "Log out", data-method:
+                    "DELETE"})%>
                 </div>
             </li>
         </ul>
