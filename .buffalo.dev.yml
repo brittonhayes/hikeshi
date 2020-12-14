@@ -11,10 +11,11 @@ ignored_folders:
   - node_modules
   - .sass-cache
 included_extensions:
+  - .html
   - .go
   - .env
 build_path: tmp
-build_delay: 200ns
+build_delay: 150ns
 binary_name: hikeshi-build
 command_flags: []
 enable_colors: true

@@ -11,6 +11,7 @@ public/assets/
 .vscode/
 .grifter/
 .env
+.task
 **/.DS_Store
 *.pid
 coverage

@@ -6,37 +6,47 @@ tasks:
       - task: build
       - task: run
 
+  init:
+    desc: Initialize the database
+    cmds:
+      - task: db
+      - /bin/sleep 6
+      - ./bin/hikeshi migrate
+      - ./bin/hikeshi task db:seed:users
+
   run:
     desc: Run hikeshi
     cmds:
       - ./bin/hikeshi
+
+  dev:
+    desc: Run hikeshi in developer mode
+    deps: [ assets ]
+    sources:
+      - templates/**/*.html
+      - templates/*.html
+    generates:
+      - tmp/hikeshi-build
+    cmds:
+      - go build -v -tags development -o tmp/hikeshi-build
+      - ./tmp/hikeshi-build
 
   build:
     desc: Build hikeshi
     cmds:
       - buffalo build
 
-  init:
-    desc: Initialize the database
-    cmds:
-      - task: db
-      - ./bin/hikeshi migrate
-      - ./bin/hikeshi task db:seed:users
-
-
-  dev:
-    desc: Run hikeshi in developer mode
-    sources:
-      - actions/*.go
-      - assets/**/*.js
-      - assets/**/*.scss
-      - templates/*.plush.html
+  assets:
+    desc: Bundle assets for building
+    source:
+      - assets/**/*
     generates:
-      - ./a/*
-      - ./tmp/*
+      - public/assets/*.js
+      - public/assets/*.css
+      - packrd/packed-packr.go
     cmds:
+      - webpack
       - packr2
-      - buffalo dev
 
   db:
     desc: Start a postgres database with Docker
