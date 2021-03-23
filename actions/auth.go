@@ -60,7 +60,6 @@ func AuthCreate(c buffalo.Context) error {
 		return bad()
 	}
 	c.Session().Set("current_user_id", u.ID)
-	c.Flash().Add("success", "Welcome Back to Hikeshi!")
 
 	redirectURL := "/"
 	if redir, ok := c.Session().Get("redirectURL").(string); ok && redir != "" {
@@ -73,6 +72,6 @@ func AuthCreate(c buffalo.Context) error {
 // AuthDestroy clears the session and logs a user out
 func AuthDestroy(c buffalo.Context) error {
 	c.Session().Clear()
-	c.Flash().Add("success", "You have been logged out!")
+	c.Flash().Add("info", "You have been logged out!")
 	return c.Redirect(302, "/auth")
 }

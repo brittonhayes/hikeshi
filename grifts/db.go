@@ -31,12 +31,12 @@ var _ = Namespace("db", func() {
 	_ = Namespace("seed", func() {
 		_ = Desc("incidents", "Seed incidents into the database")
 		_ = Add("incidents", func(c *Context) error {
-
 			for i := 0; i < 15; i++ {
 				incident := &models.Incident{
 					ID:                uuid.UUID{},
 					Date:              randomDate(),
 					DateClosed:        randomDate(),
+					Closed:            randomdata.Boolean(),
 					Severity:          randomdata.StringSample("Low", "Moderate", "High", "Critical"),
 					Title:             randomdata.StringSample("Compromised password", "Leaked API token", "Github repo public", "Insider threat"),
 					Summary:           randomIncident(),
@@ -46,22 +46,19 @@ var _ = Namespace("db", func() {
 					Mitigation:        randomdata.StringSample("All credentials rotated", "Affected customers notified", "Employee enrolled in thorough security training"),
 					AffectedCustomers: fmt.Sprintf("%v customers were affected", randomdata.Number(10, 10000)),
 					RootCause:         randomdata.StringSample("Compromised password", "Leaked API token", "Github repo public", "Insider threat"),
-					SlackChannel:      fmt.Sprintf("#security-incident-%v", randomdata.Number(12,200)),
+					SlackChannel:      fmt.Sprintf("#security-incident-%v", randomdata.Number(12, 200)),
 					CreatedAt:         randomDate(),
 					UpdatedAt:         randomDate(),
 				}
-
 				err := models.DB.Create(incident)
 				if err != nil {
 					log.Fatal(err)
 				}
 			}
-
 			return nil
 		})
 
 		_ = Add("users", func(c *Context) error {
-
 			passwd := "Password"
 			passwdHash, _ := bcrypt.GenerateFromPassword([]byte(passwd), bcrypt.DefaultCost)
 

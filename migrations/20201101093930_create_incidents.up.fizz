@@ -3,6 +3,7 @@ create_table("incidents") {
 	t.Column("permissions", "string")
 	t.Column("date", "date", {})
 	t.Column("date_closed", "date", {})
+	t.Column("closed", "bool", {})
 	t.Column("severity", "string", {})
 	t.Column("title", "string", {})
 	t.Column("summary", "text", {})

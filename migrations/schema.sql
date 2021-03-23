@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 13.0
--- Dumped by pg_dump version 13.0 (Ubuntu 13.0-1.pgdg20.04+1)
+-- Dumped by pg_dump version 13.1 (Ubuntu 13.1-1.pgdg20.04+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -29,6 +29,7 @@ CREATE TABLE public.incidents (
     permissions character varying(255) NOT NULL,
     date date NOT NULL,
     date_closed date NOT NULL,
+    closed boolean NOT NULL,
     severity character varying(255) NOT NULL,
     title character varying(255) NOT NULL,
     summary text NOT NULL,

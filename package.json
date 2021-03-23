@@ -10,6 +10,7 @@
   "repository": "github.com/gobuffalo/buffalo",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
+    "chart.js": "^2.9.4",
     "halfmoon": "^1.1.1",
     "highlight.js": "^10.4.1",
     "jquery-ujs": "~1.2.2"
